@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Aerolite
 {
+
     public class AeGame : Game
     {
+        AeEngine _engine;
         public AeGame():base()
         {
             Content.RootDirectory = "Content";
@@ -26,11 +28,12 @@ namespace Aerolite
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-           
+            _engine.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+            _engine.Render(gameTime);
         }
     }
 }

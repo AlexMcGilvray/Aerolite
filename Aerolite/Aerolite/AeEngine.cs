@@ -8,18 +8,16 @@ using System.Threading.Tasks;
 
 namespace Aerolite
 {
-    public class AeEngine
+    public sealed class AeEngine
     {
         public GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
-
-        public AeEngine()
-        {
-
-        }
+        public AeTextureManager TextureManager { get; private set; }
+        public AeGame GameReference;
 
         private void InitSubsystems()
         {
-
+            GraphicsDeviceManager = new GraphicsDeviceManager(GameReference);
+            TextureManager = new AeTextureManager(GameReference);
         }
 
         public void Update(GameTime gameTime)
@@ -27,22 +25,21 @@ namespace Aerolite
 
         }
 
-        public void Render()
+        public void Render(GameTime gameTime)
         {
 
         }
 
         #region Singleton 
         private static AeEngine instance;
-        public AeGame GameReference;
+       
         private AeEngine(AeGame game)
         {
             GameReference = game;
         }
         public static void Initalize(AeGame game)
         {
-            instance = new AeEngine();
-            instance.GraphicsDeviceManager = new GraphicsDeviceManager(game);
+            instance = new AeEngine(game);
             instance.InitSubsystems();
             //instance.State = new RsStateManager();
             //instance.TextureManager = new RsTextureManager(game);

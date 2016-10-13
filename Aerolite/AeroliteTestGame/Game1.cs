@@ -11,8 +11,6 @@ namespace AeroliteTestGame
     public class Game1 : AeGame
     {
         
-        SpriteBatch spriteBatch;
-
         public Game1():base()
         {
             Content.RootDirectory = "Content";
@@ -20,8 +18,7 @@ namespace AeroliteTestGame
  
         protected override void Load()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+      
         }
     }
 }

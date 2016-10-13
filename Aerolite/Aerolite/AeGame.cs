@@ -26,6 +26,7 @@ namespace Aerolite
         protected override sealed void LoadContent()
         {
             base.LoadContent();
+            _engine.Load();
             Load();
         }
 

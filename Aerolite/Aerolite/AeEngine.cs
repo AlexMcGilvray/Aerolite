@@ -1,5 +1,6 @@
 ﻿using Aerolite.Subsystems;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,28 @@ namespace Aerolite
     {
         public GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
         public AeTextureManager TextureManager { get; private set; }
+        private SpriteBatch _spriteBatch;
         public AeGame GameReference;
+        public AeStateManager StateManager;
 
         private void InitSubsystems()
         {
             GraphicsDeviceManager = new GraphicsDeviceManager(GameReference);
             TextureManager = new AeTextureManager(GameReference);
+
+            
+
+            StateManager = new AeStateManager(_spriteBatch);
+        }
+
+        public void Load()
+        {
+            _spriteBatch = new SpriteBatch(GraphicsDeviceManager.GraphicsDevice);
         }
 
         public void Update(GameTime gameTime)
         {
-            string ex = "dfds";
+            
         }
 
         public void Render(GameTime gameTime)
@@ -46,7 +58,6 @@ namespace Aerolite
             //instance.Input = new RsInput();
             //instance.Sound = new RsSoundManager(game);
             //instance.GraphicsSettings = new RsGraphicsSettings();
-            //instance.batch = new SpriteBatch(instance.GraphicsDeviceManager.GraphicsDevice);
             //instance.Init();
         }
 

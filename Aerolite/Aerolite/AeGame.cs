@@ -11,6 +11,7 @@ namespace Aerolite
     public class AeGame : Game
     {
         AeEngine _engine;
+
         public AeGame():base()
         {
             Content.RootDirectory = "Content";
@@ -20,11 +21,24 @@ namespace Aerolite
             base.Initialize();
         }
 
-        protected override void LoadContent()
+        protected override sealed void LoadContent()
         {
             base.LoadContent();
             AeEngine.Initalize(this);
+            _engine = AeEngine.Singleton();
+            Load();
         }
+
+        protected virtual void Load()
+        {
+
+        }
+
+        protected override void UnloadContent()
+        {
+            base.UnloadContent();
+        }
+
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

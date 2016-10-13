@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aerolite.Subsystems
+namespace Aerolite.Entity
 {
-    interface AeISubsystem
+    class AeComponent
     {
-
     }
 }

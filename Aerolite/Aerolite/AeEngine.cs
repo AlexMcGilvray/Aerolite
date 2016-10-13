@@ -22,7 +22,7 @@ namespace Aerolite
 
         public void Update(GameTime gameTime)
         {
-
+            string ex = "dfds";
         }
 
         public void Render(GameTime gameTime)

@@ -15,6 +15,8 @@ namespace Aerolite
         public AeGame():base()
         {
             Content.RootDirectory = "Content";
+            AeEngine.Initalize(this);
+            _engine = AeEngine.Singleton();
         }
         protected override sealed void Initialize()
         {
@@ -24,8 +26,6 @@ namespace Aerolite
         protected override sealed void LoadContent()
         {
             base.LoadContent();
-            AeEngine.Initalize(this);
-            _engine = AeEngine.Singleton();
             Load();
         }
 
@@ -39,15 +39,16 @@ namespace Aerolite
             base.UnloadContent();
         }
 
-        protected override void Update(GameTime gameTime)
+        protected override sealed void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             _engine.Update(gameTime);
         }
-        protected override void Draw(GameTime gameTime)
+        protected override sealed void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
             _engine.Render(gameTime);
+            
         }
     }
 }

@@ -10,7 +10,7 @@ namespace AeroliteTestGame
     /// </summary>
     public class Game1 : AeGame
     {
-        GraphicsDeviceManager graphics;
+        
         SpriteBatch spriteBatch;
 
         public Game1():base()
@@ -21,6 +21,7 @@ namespace AeroliteTestGame
         protected override void Load()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
         }
     }
 }

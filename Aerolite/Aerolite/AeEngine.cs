@@ -27,7 +27,7 @@ namespace Aerolite
 
         public void Render(GameTime gameTime)
         {
-
+            GraphicsDeviceManager.GraphicsDevice.Clear(Color.CornflowerBlue);
         }
 
         #region Singleton 

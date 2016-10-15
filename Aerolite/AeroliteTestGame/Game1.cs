@@ -18,7 +18,10 @@ namespace AeroliteTestGame
  
         protected override void Load()
         {
+            base.Load();
             var engine = AeEngine.Singleton();
+            engine.Graphics.GraphicsSettings.SetGameResolution(640, 360);
+            engine.Graphics.GraphicsSettings.SetScreenResolution(1280, 720);
             engine.StateManager.Add(new TestState());
 
         }

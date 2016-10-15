@@ -13,11 +13,14 @@ namespace AeroliteTestGame
     {
 
         Texture2D someTexture;
+        Vector2 pos;
         
         public TestState()
         {
             // this is a little roundabout to get to content. Maybe give engine a property
+            // edit we should be using texture manager anyways
             someTexture = Engine.GameReference.Content.Load<Texture2D>("building_test");
+            
         }
            
         public override void Update(GameTime gameTime)
@@ -27,10 +30,11 @@ namespace AeroliteTestGame
 
         public override void Draw(GameTime gameTime,SpriteBatch batch)
         {
-            Engine.GraphicsDeviceManager.GraphicsDevice.Clear(Color.CornflowerBlue);
-            batch.Begin();
+            
+
+
             batch.Draw(someTexture, new Vector2(100, 100), Color.White);
-            batch.End();
+          
         }
     }
 }

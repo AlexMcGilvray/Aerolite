@@ -16,19 +16,24 @@ namespace Aerolite.HighLevel2D
         private Vector2 _size;
         public float SizeX { get { return _size.X; } set { _size.X = value; } }
         public float SizeY { get { return _size.Y; } set { _size.Y = value; } }
-        public Vector2 Size { get { return Size; } set { _size = value; } }
-
-
-
+        public Vector2 Size { get { return _size; } set { _size = value; } }
+        
         public AeSprite(string texturePath) : base()
         {
             Texture = Engine.TextureManager.LoadTexture(texturePath);
+            SizeX = Texture.Width;
+            SizeY = Texture.Height;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             base.Draw(gameTime, batch);
-            batch.Draw(Texture, Transform.Position, Color.White);
+            Rectangle destinationRectangle;
+            destinationRectangle.X = (int)Transform.X;
+            destinationRectangle.Y = (int)Transform.Y;
+            destinationRectangle.Width = (int)Size.X;
+            destinationRectangle.Height = (int)Size.Y;
+            batch.Draw(Texture, destinationRectangle, Color.White);
         }
 
 

@@ -52,6 +52,9 @@
     <Compile Include="Subsystems\AeState.cs" />
     <Compile Include="Subsystems\AeStateManager.cs" />
     <Compile Include="Subsystems\AeTextureManager.cs" />
+    <Compile Include="Subsystems\Graphics\AeGraphics.cs" />
+    <Compile Include="Subsystems\Graphics\AeGraphicsSettings.cs" />
+    <Compile Include="Subsystems\Graphics\AeRenderer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

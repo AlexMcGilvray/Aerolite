@@ -13,7 +13,19 @@ namespace Aerolite.Entity
         public bool Alive { get; set; }
         public bool IsInitialized { get; private set; }
 
-        public AeTransform Transform { get; set; }
+        public AeTransform Transform { get; private set; }
+
+        public List<AeComponent> Components { get; private set; }
+
+        protected AeEngine Engine { get; private set; }
+
+
+        public AeEntity()
+        {
+            Engine = AeEngine.Singleton();
+            Transform = new AeTransform();
+            Components = new List<AeComponent>();
+        }
         
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(GameTime gameTime, SpriteBatch batch) { }

@@ -46,6 +46,7 @@
     <Compile Include="Entity\AeComponent.cs" />
     <Compile Include="Entity\AeEntity.cs" />
     <Compile Include="Entity\AeTransform.cs" />
+    <Compile Include="HighLevel2D\AeSprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AeGame.cs" />
     <Compile Include="Subsystems\AeISubsystem.cs" />

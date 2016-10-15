@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Aerolite.Entity
 {
-    class AeComponent
+    public abstract class AeComponent
     {
     }
 }

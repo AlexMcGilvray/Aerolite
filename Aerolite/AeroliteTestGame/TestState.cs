@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 using Aerolite.Subsystems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Aerolite.HighLevel2D;
 
 namespace AeroliteTestGame
 {
     class TestState : AeState
     {
 
-        Texture2D someTexture;
-        Vector2 pos;
-        
+
+
+        AeSprite _sprite;
+
         public TestState()
         {
-            // this is a little roundabout to get to content. Maybe give engine a property
-            // edit we should be using texture manager anyways
-            someTexture = Engine.GameReference.Content.Load<Texture2D>("building_test");
-            
+            _sprite = new AeSprite("building_test");
+
         }
            
         public override void Update(GameTime gameTime)
@@ -30,10 +30,8 @@ namespace AeroliteTestGame
 
         public override void Draw(GameTime gameTime,SpriteBatch batch)
         {
-            
-
-
-            batch.Draw(someTexture, new Vector2(100, 100), Color.White);
+            _sprite.Transform.X += 0.5f;
+            _sprite.Draw(gameTime, batch);
           
         }
     }

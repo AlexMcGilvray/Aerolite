@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// TODO Stop managing delegates yourself and use the event keyword
+/// </summary>
 namespace Aerolite.Subsystems.Graphics
 {
     /// <summary>
     /// Defines the scaling method when the resolution of the game doesn't match the resolution of the screen.
     /// </summary>
-    public enum GameToScreenScalingMode
+    public enum AeScalingMode
     {
         /// <summary>
         /// Performs no scaling and centers the screen in the window.
@@ -34,6 +36,7 @@ namespace Aerolite.Subsystems.Graphics
 
     public delegate void OnScreenResolutionChange();
     public delegate void OnGameResolutionChange();
+
     public sealed class AeGraphicsSettings
     {
         private HashSet<OnScreenResolutionChange> screenResolutionChangeCallbacks = new HashSet<OnScreenResolutionChange>();
@@ -48,7 +51,7 @@ namespace Aerolite.Subsystems.Graphics
 
         public bool ResolutionMatch { get; private set; }
 
-        public GameToScreenScalingMode ScalingMode { get; set; }
+        public AeScalingMode ScalingMode { get; set; }
 
         public Color ClearColorFinalRenderTarget = Color.CornflowerBlue;
         public Color ClearColorBackBuffer = Color.CornflowerBlue;
@@ -68,7 +71,7 @@ namespace Aerolite.Subsystems.Graphics
             GameResolutionHeight = graphicsDevice.PreferredBackBufferHeight;
             CompareGameToScreenResolution();
             ClearColorFinalRenderTarget = Color.Black;
-            ScalingMode = GameToScreenScalingMode.CLOSEST_MULTIPLE_OF_2;
+            ScalingMode = AeScalingMode.CLOSEST_MULTIPLE_OF_2;
             SetGameResolution(1280, 720);
             SetScreenResolution(1280, 720);
         }

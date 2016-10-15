@@ -36,7 +36,6 @@ namespace Aerolite.Subsystems.Graphics
                        _graphics.GraphicsSettings.GameResolutionWidth,
                        _graphics.GraphicsSettings.GameResolutionHeight);
                });
-
         }
 
         public void Render(GameTime gameTime, AeStateManager stateManager)
@@ -52,7 +51,6 @@ namespace Aerolite.Subsystems.Graphics
             }
             if (!graphicsSettings.ResolutionMatch)
             {
-                //finalPassTarget = new RenderTarget2D(GraphicsDeviceManager.GraphicsDevice, GraphicsSettings.GameResolutionWidth, GraphicsSettings.GameResolutionHeight);
                 graphicsDeviceManager.GraphicsDevice.SetRenderTarget(finalPassTarget);
                 graphicsDeviceManager.GraphicsDevice.Clear(graphicsSettings.ClearColorFinalRenderTarget);
                 _graphics.Batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -63,12 +61,12 @@ namespace Aerolite.Subsystems.Graphics
                 _graphics.Batch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);
                 switch (graphicsSettings.ScalingMode)
                 {
-                    case GameToScreenScalingMode.NO_SCALING:
+                    case AeScalingMode.NO_SCALING:
                         int noscaleX = (graphicsDeviceManager.PreferredBackBufferWidth - graphicsSettings.GameResolutionWidth) / 2 - finalPassTarget.Width / 2;
                         int noscaleY = (graphicsDeviceManager.PreferredBackBufferHeight - graphicsSettings.GameResolutionHeight) / -finalPassTarget.Height / 2;
                         _graphics.Batch.Draw(finalPassTarget, new Rectangle(noscaleX, noscaleY, graphicsSettings.GameResolutionWidth, graphicsSettings.GameResolutionHeight), Color.White);
                         break;
-                    case GameToScreenScalingMode.UNIFORM_STRETCH:
+                    case AeScalingMode.UNIFORM_STRETCH:
                         float uniformScaleXTest = graphicsDeviceManager.PreferredBackBufferWidth / (float)graphicsSettings.GameResolutionWidth;
                         float uniformScaleYTest = graphicsDeviceManager.PreferredBackBufferHeight / (float)graphicsSettings.GameResolutionHeight;
                         float uniformScale;
@@ -87,10 +85,12 @@ namespace Aerolite.Subsystems.Graphics
                         int uniformY = (graphicsDeviceManager.PreferredBackBufferHeight - uniformHeight) / 2;
                         _graphics.Batch.Draw(finalPassTarget, new Rectangle(uniformX, uniformY, uniformWidth, uniformHeight), Color.White);
                         break;
-                    case GameToScreenScalingMode.CLOSEST_MULTIPLE_OF_2:
+                    case AeScalingMode.CLOSEST_MULTIPLE_OF_2:
                         int closestMultipleOf2Width = graphicsSettings.GameResolutionWidth;
                         int closestMultipleOf2Height = graphicsSettings.GameResolutionHeight;
-                        while ((closestMultipleOf2Width * 2 <= graphicsDeviceManager.PreferredBackBufferWidth) && (closestMultipleOf2Height * 2 <= graphicsDeviceManager.PreferredBackBufferHeight))
+                        while (
+                            (closestMultipleOf2Width * 2 <= graphicsDeviceManager.PreferredBackBufferWidth) && 
+                            (closestMultipleOf2Height * 2 <= graphicsDeviceManager.PreferredBackBufferHeight))
                         {
                             closestMultipleOf2Width *= 2;
                             closestMultipleOf2Height *= 2;
@@ -99,7 +99,7 @@ namespace Aerolite.Subsystems.Graphics
                         int closestMultipleOf2Y = (graphicsDeviceManager.PreferredBackBufferHeight - closestMultipleOf2Height) / 2;
                         _graphics.Batch.Draw(finalPassTarget, new Rectangle(closestMultipleOf2X, closestMultipleOf2Y, closestMultipleOf2Width, closestMultipleOf2Height), Color.White);
                         break;
-                    case GameToScreenScalingMode.STRETCH:
+                    case AeScalingMode.STRETCH:
                         _graphics.Batch.Draw(finalPassTarget, new Rectangle(0, 0, graphicsDeviceManager.PreferredBackBufferWidth, graphicsDeviceManager.PreferredBackBufferHeight), Color.White);
                         break;
                     default:

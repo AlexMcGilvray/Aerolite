@@ -18,7 +18,9 @@ namespace AeroliteTestGame
  
         protected override void Load()
         {
-      
+            var engine = AeEngine.Singleton();
+            engine.StateManager.Add(new TestState());
+
         }
     }
 }

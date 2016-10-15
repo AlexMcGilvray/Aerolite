@@ -11,12 +11,9 @@ namespace Aerolite.Subsystems
     public class AeStateManager
     {
         private List<AeState> _states = new List<AeState>();
-        private SpriteBatch _spriteBatch;
 
-        public AeStateManager(SpriteBatch batch)
-        {
-            _spriteBatch = batch;
-        }
+        public AeStateManager()
+        {        }
 
         public void Add(AeState state)
         {
@@ -33,11 +30,11 @@ namespace Aerolite.Subsystems
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime,SpriteBatch spriteBatch)
         {
             foreach (AeState state in _states)
             {
-                state.Draw(gameTime, _spriteBatch);
+                state.Draw(gameTime, spriteBatch);
             }
         }
     }

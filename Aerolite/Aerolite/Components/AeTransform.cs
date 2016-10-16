@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aerolite.Components;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aerolite.Entity
+namespace Aerolite.Components
 {
     public class AeTransform : AeComponent
     {

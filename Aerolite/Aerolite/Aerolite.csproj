@@ -43,10 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AeEngine.cs" />
-    <Compile Include="Entity\AeComponent.cs" />
+    <Compile Include="Components\AeAnimator.cs" />
+    <Compile Include="Components\AeComponent.cs" />
     <Compile Include="Entity\AeEntity.cs" />
     <Compile Include="Entity\AeLayer.cs" />
-    <Compile Include="Entity\AeTransform.cs" />
+    <Compile Include="Components\AeTransform.cs" />
     <Compile Include="HighLevel2D\AeSprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AeGame.cs" />

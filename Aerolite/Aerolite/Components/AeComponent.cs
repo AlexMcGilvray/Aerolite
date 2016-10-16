@@ -1,0 +1,29 @@
+﻿using Aerolite.Entity;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Aerolite.Components
+{
+    public abstract class AeComponent 
+    {
+        public AeEntity Owner { get; set; }
+
+        public AeComponent()
+        {
+
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+        }
+
+        public virtual void Draw(GameTime gameTime, SpriteBatch batch)
+        {
+        }
+    }
+}

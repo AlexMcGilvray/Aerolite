@@ -18,10 +18,13 @@ namespace AeroliteTestGame
         AeSprite _sprite2;
         AeSprite _sprite3;
 
+        AeSprite _backgroundSky;
+
         AeLayer _spriteLayer = new AeLayer();
 
         public TestState()
         {
+            _backgroundSky = new AeSprite("background_sky01");
             _sprite = new AeSprite("building_test");
             _sprite2 = new AeSprite("ground_001");
             _sprite3 = new AeSprite();
@@ -44,6 +47,7 @@ namespace AeroliteTestGame
             _spriteLayer.Add(_sprite2);
             _spriteLayer.Add(_sprite3);
             
+            AddEntity(_backgroundSky);
             AddEntity(_spriteLayer);
         }
 
@@ -68,8 +72,8 @@ namespace AeroliteTestGame
             {
                 _sprite3.Transform.X += 0.07f * gameTime.ElapsedGameTime.Milliseconds;
             }
-            _sprite.Transform.X += 0.1f * gameTime.ElapsedGameTime.Milliseconds;
-            _sprite2.Transform.X += 0.05f * gameTime.ElapsedGameTime.Milliseconds;
+            _sprite.Transform.X += 0.01f * gameTime.ElapsedGameTime.Milliseconds;
+            _sprite2.Transform.X += 0.005f * gameTime.ElapsedGameTime.Milliseconds;
         }
 
         public override void Draw(GameTime gameTime,SpriteBatch batch)

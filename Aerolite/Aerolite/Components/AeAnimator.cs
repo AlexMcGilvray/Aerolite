@@ -45,11 +45,8 @@ namespace Aerolite.Components
         }
 
         public AeAnimation(string pathToTexture, AeAnimator parent,AeAnimationFrame[] frames = null)
-        {
-            Texture = AeEngine.Singleton().TextureManager.LoadTexture(pathToTexture);
-            Parent = parent;
-            AddFrames(frames);
-        }
+            :this(AeEngine.Singleton().TextureManager.LoadTexture(pathToTexture),parent,frames)
+        { }
 
         public void AddFrame(AeAnimationFrame frame)
         {
@@ -157,7 +154,6 @@ namespace Aerolite.Components
             {
                 CurrentAnimation.Draw(batch);
             }
-          
         }
     }
 }

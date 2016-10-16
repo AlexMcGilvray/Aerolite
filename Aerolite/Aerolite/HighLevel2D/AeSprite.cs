@@ -41,12 +41,6 @@ namespace Aerolite.HighLevel2D
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             base.Draw(gameTime, batch);
-            //Rectangle destinationRectangle;
-            //destinationRectangle.X = (int)Math.Round(Transform.X);
-            //destinationRectangle.Y = (int)Math.Round(Transform.Y);
-            //destinationRectangle.Width = (int)Size.X;
-            //destinationRectangle.Height = (int)Size.Y;
-            //batch.Draw(Texture, destinationRectangle, Color.White);
         }
     }
 }

@@ -26,16 +26,15 @@ namespace AeroliteTestGame
             _sprite2 = new AeSprite("ground_001");
             _sprite3 = new AeSprite();
             
-            AeAnimationFrame frame1 = new AeAnimationFrame(0, 0, 128, 64, 100);
-            AeAnimationFrame frame2 = new AeAnimationFrame(128, 0, 128, 64, 100);
-            AeAnimationFrame frame3 = new AeAnimationFrame(256, 0, 128, 64, 100);
+            AeAnimation animation = new AeAnimation(
+                "ground_002-sheet", 
+                _sprite3.Animator, 
+                new AeAnimationFrame[]{
+                    new AeAnimationFrame(0, 0, 128, 64, 100),
+                    new AeAnimationFrame(128, 0, 128, 64, 150),
+                    new AeAnimationFrame(256, 0, 128, 64, 200)
+            });
 
-            AeAnimation animation = new AeAnimation("ground_002-sheet", _sprite3.Animator);
-
-            animation.AddFrame(frame1);
-            animation.AddFrame(frame2);
-            animation.AddFrame(frame3);
-            
             _sprite3.Animator.Add("idle",animation);
             
             _sprite2.Transform.Y = 50;

@@ -37,21 +37,34 @@ namespace Aerolite.Components
         private int _currentElapsedTime = 0;
         private int _currentFrame = 0;
 
-        public AeAnimation(Texture2D texture, AeAnimator parent)
+        public AeAnimation(Texture2D texture, AeAnimator parent,AeAnimationFrame[] frames = null)
         {
             Texture = texture;
             Parent = parent;
+            AddFrames(frames);
         }
 
-        public AeAnimation(string pathToTexture, AeAnimator parent)
+        public AeAnimation(string pathToTexture, AeAnimator parent,AeAnimationFrame[] frames = null)
         {
             Texture = AeEngine.Singleton().TextureManager.LoadTexture(pathToTexture);
             Parent = parent;
+            AddFrames(frames);
         }
 
         public void AddFrame(AeAnimationFrame frame)
         {
             Frames.Add(frame);
+        }
+
+        public void AddFrames(params AeAnimationFrame[] frames)
+        {
+            if (frames != null)
+            {
+                for (int i = 0; i < frames.Length; i++)
+                {
+                    Frames.Add(frames[i]);
+                }
+            }
         }
 
         public void Update(GameTime gameTime)

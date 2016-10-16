@@ -74,6 +74,8 @@ namespace AeroliteTestGame
             }
             _sprite.Transform.X += 0.01f * gameTime.ElapsedGameTime.Milliseconds;
             _sprite2.Transform.X += 0.005f * gameTime.ElapsedGameTime.Milliseconds;
+
+            _backgroundSky.Transform.X -= 0.01f * gameTime.ElapsedGameTime.Milliseconds;
         }
 
         public override void Draw(GameTime gameTime,SpriteBatch batch)

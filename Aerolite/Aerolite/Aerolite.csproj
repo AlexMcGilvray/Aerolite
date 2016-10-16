@@ -49,7 +49,6 @@
     <Compile Include="HighLevel2D\AeSprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AeGame.cs" />
-    <Compile Include="Subsystems\AeISubsystem.cs" />
     <Compile Include="Subsystems\AeState.cs" />
     <Compile Include="Subsystems\AeStateManager.cs" />
     <Compile Include="Subsystems\AeTextureManager.cs" />

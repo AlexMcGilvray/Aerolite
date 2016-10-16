@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Aerolite.Subsystems
 {
-    public class AeTextureManager : AeISubsystem
+    public class AeTextureManager
     {
         private int proceduralObjectCounter = 0;
         private const string DEFAULT_TEX_GROUP = "Default";

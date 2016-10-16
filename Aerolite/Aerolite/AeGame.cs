@@ -30,10 +30,7 @@ namespace Aerolite
             Load();
         }
 
-        protected virtual void Load()
-        {
-
-        }
+        protected virtual void Load() { }
 
         protected override void UnloadContent()
         {
@@ -43,13 +40,12 @@ namespace Aerolite
         protected override sealed void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            _engine.Update(gameTime);
+            _engine.StateManager.Update(gameTime);
         }
         protected override sealed void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            _engine.Render(gameTime);
-            
+            _engine.Graphics.Renderer.Render(gameTime, _engine.StateManager);
         }
     }
 }

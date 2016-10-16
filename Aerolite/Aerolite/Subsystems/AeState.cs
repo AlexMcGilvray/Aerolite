@@ -11,11 +11,8 @@ namespace Aerolite.Subsystems
 {
     public class AeState : AeEntity
     {
-        public AeEngine Engine { get; private set; }
-
-        public AeState()
+        public AeState() : base()
         {
-            Engine = AeEngine.Singleton();
         }
 
         public override void Update(GameTime gameTime)

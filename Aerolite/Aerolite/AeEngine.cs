@@ -33,23 +33,13 @@ namespace Aerolite
         public void Load()
         {
             Graphics.Load();
+
             AeGraphicsSettings settings = new AeGraphicsSettings(Graphics);
             AeRenderer renderer = new AeRenderer(Graphics);
 
             TextureManager = new AeTextureManager(GameReference);
 
             StateManager = new AeStateManager();
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            StateManager.Update(gameTime);
-        }
-
-        public void Render(GameTime gameTime)
-        {
-            //TODO decide on Render or Draw. Not both
-            Graphics.Renderer.Render(gameTime, StateManager);
         }
 
         #region Singleton 

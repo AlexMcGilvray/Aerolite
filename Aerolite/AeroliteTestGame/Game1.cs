@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Aerolite;
+using Aerolite.Subsystems.Graphics;
 
 namespace AeroliteTestGame
 {
@@ -20,7 +21,8 @@ namespace AeroliteTestGame
         {
             base.Load();
             var engine = AeEngine.Singleton();
-            engine.Graphics.GraphicsSettings.SetGameResolution(640, 360);
+            engine.Graphics.GraphicsSettings.ScalingMode = AeScalingMode.CLOSEST_MULTIPLE_OF_2;
+            engine.Graphics.GraphicsSettings.SetGameResolution(320, 240);
             engine.Graphics.GraphicsSettings.SetScreenResolution(1280, 720);
             engine.StateManager.Add(new TestState());
 

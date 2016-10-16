@@ -29,8 +29,8 @@ namespace Aerolite.HighLevel2D
         {
             base.Draw(gameTime, batch);
             Rectangle destinationRectangle;
-            destinationRectangle.X = (int)Transform.X;
-            destinationRectangle.Y = (int)Transform.Y;
+            destinationRectangle.X = (int)Math.Floor(Transform.X);
+            destinationRectangle.Y = (int)Math.Floor(Transform.Y);
             destinationRectangle.Width = (int)Size.X;
             destinationRectangle.Height = (int)Size.Y;
             batch.Draw(Texture, destinationRectangle, Color.White);

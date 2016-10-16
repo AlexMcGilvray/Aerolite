@@ -1,5 +1,6 @@
 ﻿using Aerolite.Subsystems;
 using Aerolite.Subsystems.Graphics;
+using Aerolite.Subsystems.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,6 +17,7 @@ namespace Aerolite
         public AeGame GameReference;
         public AeStateManager StateManager;
         public AeGraphics Graphics;
+        public AeInput Input;
 
         private void InitSubsystems()
         {
@@ -33,6 +35,8 @@ namespace Aerolite
         public void Load()
         {
             Graphics.Load();
+
+            Input = new AeInput();
 
             AeGraphicsSettings settings = new AeGraphicsSettings(Graphics);
             AeRenderer renderer = new AeRenderer(Graphics);

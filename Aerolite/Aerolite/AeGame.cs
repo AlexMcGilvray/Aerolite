@@ -40,6 +40,7 @@ namespace Aerolite
         protected override sealed void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            _engine.Input.PollInput();
             _engine.StateManager.Update(gameTime);
         }
         protected override sealed void Draw(GameTime gameTime)

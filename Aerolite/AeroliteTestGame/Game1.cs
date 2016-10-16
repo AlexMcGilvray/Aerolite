@@ -21,9 +21,11 @@ namespace AeroliteTestGame
         {
             base.Load();
             var engine = AeEngine.Singleton();
+            engine.GameReference.Window.Position = new Point(10, 10);
+
             engine.Graphics.GraphicsSettings.ScalingMode = AeScalingMode.CLOSEST_MULTIPLE_OF_2;
             engine.Graphics.GraphicsSettings.SetGameResolution(320, 240);
-            engine.Graphics.GraphicsSettings.SetScreenResolution(1280, 720);
+            engine.Graphics.GraphicsSettings.SetScreenResolution(1280, 960);
             engine.StateManager.Add(new TestState());
 
         }

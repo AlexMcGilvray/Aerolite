@@ -9,37 +9,37 @@ namespace Aerolite.Subsystems.Input
     public class AeInput
     {
         private AeKeyboard keyboard;
-        //private GamePadHandler gamepads;
-        //private MouseHandler mouse;
+        private AeGamepad gamepads;
+        private AeMouse mouse;
         public bool MouseEnable { get; set; }
 
         public AeInput()
         {
             keyboard = new AeKeyboard();
-            //mouse = new MouseHandler();
-            //gamepads = new GamePadHandler();
+            mouse = new AeMouse();
+            gamepads = new AeGamepad();
         }
 
-        //public GamePadHandler GamePads
-        //{
-        //    get { return gamepads; }
-        //}
+        public AeGamepad GamePads
+        {
+            get { return gamepads; }
+        }
 
         public AeKeyboard Keyboard
         {
             get { return keyboard; }
         }
 
-        //public MouseHandler Mouse
-        //{
-        //    get { return mouse; }
-        //}
+        public AeMouse Mouse
+        {
+            get { return mouse; }
+        }
 
         public void PollInput()
         {
-            //gamepads.Poll();
+            gamepads.Poll();
             keyboard.Poll();
-            //mouse.Poll();
+            mouse.Poll();
         }
     }
 }

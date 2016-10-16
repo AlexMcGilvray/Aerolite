@@ -55,8 +55,10 @@
     <Compile Include="Subsystems\Graphics\AeGraphics.cs" />
     <Compile Include="Subsystems\Graphics\AeGraphicsSettings.cs" />
     <Compile Include="Subsystems\Graphics\AeRenderer.cs" />
+    <Compile Include="Subsystems\Input\AeGamepad.cs" />
     <Compile Include="Subsystems\Input\AeInput.cs" />
     <Compile Include="Subsystems\Input\AeKeyboard.cs" />
+    <Compile Include="Subsystems\Input\AeMouse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

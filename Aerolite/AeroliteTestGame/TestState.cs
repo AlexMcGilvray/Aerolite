@@ -7,6 +7,7 @@ using Aerolite.Subsystems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Aerolite.HighLevel2D;
+using Aerolite.Entity;
 
 namespace AeroliteTestGame
 {
@@ -16,6 +17,8 @@ namespace AeroliteTestGame
         AeSprite _sprite2;
         AeSprite _sprite3;
 
+        AeLayer _spriteLayer = new AeLayer();
+
         public TestState()
         {
             _sprite = new AeSprite("building_test");
@@ -24,10 +27,17 @@ namespace AeroliteTestGame
 
             _sprite2.Transform.Y = 50;
             _sprite3.Transform.Y = 90;
+
+            _spriteLayer.Add(_sprite);
+            _spriteLayer.Add(_sprite2);
+            _spriteLayer.Add(_sprite3);
+            
+            AddEntity(_spriteLayer);
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             var keyboard = Engine.Input.Keyboard;
 
             if (keyboard.Down(Microsoft.Xna.Framework.Input.Keys.S))
@@ -53,9 +63,7 @@ namespace AeroliteTestGame
 
         public override void Draw(GameTime gameTime,SpriteBatch batch)
         {
-            _sprite.Draw(gameTime, batch);
-            _sprite2.Draw(gameTime, batch);
-            _sprite3.Draw(gameTime, batch);
+            base.Draw(gameTime, batch);
         }
     }
 }

@@ -19,7 +19,6 @@ namespace Aerolite.HighLevel2D
         public float SizeY { get { return _size.Y; } set { _size.Y = value; } }
         public Vector2 Size { get { return _size; } set { _size = value; } }
 
-
         public AeAnimator Animator { get; private set; }
         
         public AeSprite(string texturePath = null) : base()

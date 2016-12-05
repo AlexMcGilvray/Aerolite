@@ -48,11 +48,8 @@ namespace Aerolite.Subsystems.Graphics
         /// Acts as a dirty flag if the resolution has changed.
         /// </summary>
         public bool Valid { get; set; }
-
         public bool ResolutionMatch { get; private set; }
-
         public AeScalingMode ScalingMode { get; set; }
-
         public Color ClearColorFinalRenderTarget = Color.CornflowerBlue;
         public Color ClearColorBackBuffer = Color.CornflowerBlue;
         public int GameResolutionWidth { get; private set; }
@@ -85,7 +82,6 @@ namespace Aerolite.Subsystems.Graphics
         {
             gameResolutionChangeCallbacks.Add(callback);
         }
-
 
         public void SetGameResolution(int width, int height)
         {
@@ -127,10 +123,11 @@ namespace Aerolite.Subsystems.Graphics
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>True if resolutions match, false if they dont match</returns>
+        /// <returns>True if resolutions match, false if they don't match</returns>
         private void CompareGameToScreenResolution()
         {
-            if ((graphicsDevice.PreferredBackBufferWidth != GameResolutionWidth) || (graphicsDevice.PreferredBackBufferHeight != GameResolutionHeight))
+            if ((graphicsDevice.PreferredBackBufferWidth != GameResolutionWidth) || 
+                (graphicsDevice.PreferredBackBufferHeight != GameResolutionHeight))
             {
                 ResolutionMatch = false;
             }

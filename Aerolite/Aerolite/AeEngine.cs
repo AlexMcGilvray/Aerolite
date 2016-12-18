@@ -36,7 +36,7 @@ namespace Aerolite
         {
             Graphics.Load();
 
-            Input = new AeInput();
+            Input = new AeInput(Graphics);
 
             AeGraphicsSettings settings = new AeGraphicsSettings(Graphics);
             AeRenderer renderer = new AeRenderer(Graphics);

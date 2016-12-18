@@ -54,6 +54,8 @@ namespace Aerolite.Subsystems.Graphics
         public Color ClearColorBackBuffer = Color.CornflowerBlue;
         public int GameResolutionWidth { get; private set; }
         public int GameResolutionHeight { get; private set; }
+        public int ScreenResolutionWidth { get { return graphicsDevice.PreferredBackBufferWidth; } }
+        public int ScreenResolutionHeight { get { return graphicsDevice.PreferredBackBufferHeight; } }
 
         public Viewport Viewport { get; private set; }
 

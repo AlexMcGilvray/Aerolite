@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aerolite.Subsystems.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,10 @@ namespace Aerolite.Subsystems.Input
         private AeMouse mouse;
         public bool MouseEnable { get; set; }
 
-        public AeInput()
+        public AeInput(AeGraphics graphics)
         {
             keyboard = new AeKeyboard();
-            mouse = new AeMouse();
+            mouse = new AeMouse(graphics);
             gamepads = new AeGamepad();
         }
 

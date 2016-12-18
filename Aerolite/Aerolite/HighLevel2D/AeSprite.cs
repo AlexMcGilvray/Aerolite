@@ -24,16 +24,13 @@ namespace Aerolite.HighLevel2D
         public AeSprite(string texturePath = null) : base()
         {
             Animator = new AeAnimator();
-
             if (!string.IsNullOrEmpty(texturePath))
             {
                 AeAnimation animation = new AeAnimation(texturePath, Animator);
                 AeAnimationFrame frame1 = new AeAnimationFrame(0, 0, animation.Texture.Width, animation.Texture.Height, -1);
-
                 animation.AddFrame(frame1);
                 Animator.Add("default",animation);
             }
-
             AddComponent(Animator);
         }
 

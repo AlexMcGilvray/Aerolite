@@ -1,6 +1,7 @@
 ﻿using Aerolite.Subsystems;
 using Aerolite.Subsystems.Graphics;
 using Aerolite.Subsystems.Input;
+using Aerolite.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,6 +19,7 @@ namespace Aerolite
         public AeStateManager StateManager;
         public AeGraphics Graphics;
         public AeInput Input;
+        public AeRandom Random;
 
         private void InitSubsystems()
         {
@@ -35,6 +37,8 @@ namespace Aerolite
         public void Load()
         {
             Graphics.Load();
+
+            Random = new AeRandom();
 
             Input = new AeInput(Graphics);
 

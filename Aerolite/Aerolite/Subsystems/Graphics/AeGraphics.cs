@@ -19,6 +19,7 @@ namespace Aerolite.Subsystems.Graphics
         public AeGraphics(GraphicsDeviceManager graphicsDeviceManager)
         {
             GraphicsDeviceManager = graphicsDeviceManager;
+            //graphicsDeviceManager.PreferMultiSampling = false;
         }
 
         public void Load()

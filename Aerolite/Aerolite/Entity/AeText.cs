@@ -43,6 +43,8 @@ namespace Aerolite
         {
             base.Draw(gameTime, batch);
             //TODO add support for color (interpolaters too!)
+            Vector2 pos = Transform.Position;
+
             batch.DrawString(_font, _text, Transform.Position, Color.White);
         }
     }

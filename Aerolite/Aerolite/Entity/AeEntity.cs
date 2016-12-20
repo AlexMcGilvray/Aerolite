@@ -11,10 +11,11 @@ namespace Aerolite.Entity
 {
     public class AeEntity
     {
-        public bool Alive { get; set; }
+        public bool Alive { get; set; } = true;
         public bool IsInitialized { get; private set; }
 
         public AeTransform Transform { get; private set; }
+        public AeAABB CollisionHull { get; private set; }
         private List<AeComponent> Components { get; set; }
         private List<AeEntity> Children { get; set; }
 
@@ -24,6 +25,7 @@ namespace Aerolite.Entity
         {
             Engine = AeEngine.Singleton();
             Transform = new AeTransform();
+            CollisionHull = new AeAABB();
             Components = new List<AeComponent>();
             Children = new List<AeEntity>();
         }
@@ -38,29 +40,37 @@ namespace Aerolite.Entity
         {
             Children.Add(entity);
         }
-        
+        //TODO switch to update/doupdate pattern so alive bool will work
         public virtual void Update(GameTime gameTime)
         {
-            foreach (var cmp in Components)
+            if (Alive)
             {
-                cmp.Update(gameTime);
-            }
-            foreach (var child in Children)
-            {
-                child.Update(gameTime);
+                CollisionHull.SetPosition((int)Transform.X, (int)Transform.Y);
+                foreach (var cmp in Components)
+                {
+                    cmp.Update(gameTime);
+                }
+                foreach (var child in Children)
+                {
+                    child.Update(gameTime);
+                }
             }
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch batch)
         {
-            foreach (var cmp in Components)
+            if (Alive)
             {
-                cmp.Draw(gameTime,batch);
+                foreach (var cmp in Components)
+                {
+                    cmp.Draw(gameTime, batch);
+                }
+                foreach (var child in Children)
+                {
+                    child.Draw(gameTime, batch);
+                }
             }
-            foreach (var child in Children)
-            {
-                child.Draw(gameTime, batch);
-            }
+            
         }
     }
 }

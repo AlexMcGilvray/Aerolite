@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AeEngine.cs" />
+    <Compile Include="Components\AeAABB.cs" />
     <Compile Include="Components\AeAnimator.cs" />
     <Compile Include="Components\AeComponent.cs" />
     <Compile Include="Entity\AeEntity.cs" />

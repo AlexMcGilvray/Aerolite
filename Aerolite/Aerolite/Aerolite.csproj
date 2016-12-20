@@ -46,8 +46,10 @@
     <Compile Include="Components\AeAnimator.cs" />
     <Compile Include="Components\AeComponent.cs" />
     <Compile Include="Entity\AeEntity.cs" />
+    <Compile Include="Entity\AeEntityLayer.cs" />
     <Compile Include="Entity\AeLayer.cs" />
     <Compile Include="Components\AeTransform.cs" />
+    <Compile Include="Entity\AeSpriteLayer.cs" />
     <Compile Include="Entity\AeText.cs" />
     <Compile Include="HighLevel2D\AeSprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

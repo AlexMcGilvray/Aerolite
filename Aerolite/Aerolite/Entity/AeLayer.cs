@@ -6,25 +6,25 @@ using System.Collections.Generic;
 namespace Aerolite.Entity
 {
     //todo add enumerable support
-    public class AeLayer : AeEntity
+    public class AeLayer<T> : AeEntity where T:AeEntity
     {
         private const int InitialLayerSize = 64;
 
-        private List<AeEntity> _entities;
+        private List<T> _entities;
 
-        public List<AeEntity> Children { get { return _entities; } }
+        public List<T> Children { get { return _entities; } }
         
         public AeLayer(int initialCollectionSize = InitialLayerSize)
         {
-            _entities = new List<AeEntity>(InitialLayerSize);
+            _entities = new List<T>(InitialLayerSize);
         }
 
-        public void Add(AeEntity entity)
+        public void Add(T entity)
         {
             _entities.Add(entity);
         }
 
-        public void Remove(AeEntity entity)
+        public void Remove(T entity)
         {
             throw new NotImplementedException();
         }

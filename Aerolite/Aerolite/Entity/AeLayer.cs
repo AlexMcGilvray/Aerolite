@@ -5,11 +5,14 @@ using System.Collections.Generic;
 
 namespace Aerolite.Entity
 {
+    //todo add enumerable support
     public class AeLayer : AeEntity
     {
         private const int InitialLayerSize = 64;
 
         private List<AeEntity> _entities;
+
+        public List<AeEntity> Children { get { return _entities; } }
         
         public AeLayer(int initialCollectionSize = InitialLayerSize)
         {

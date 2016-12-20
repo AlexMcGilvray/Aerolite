@@ -37,6 +37,8 @@ namespace Aerolite.Components
         private int _currentElapsedTime = 0;
         private int _currentFrame = 0;
 
+        public bool CompleteAnimation { get; private set; } = false;
+
         public AeAnimation(Texture2D texture, AeAnimator parent,AeAnimationFrame[] frames = null)
         {
             Texture = texture;
@@ -64,6 +66,13 @@ namespace Aerolite.Components
             }
         }
 
+        public void ResetAnimation()
+        {
+            _currentElapsedTime = 0;
+            _currentFrame = 0;
+            CompleteAnimation = false;
+        }
+
         public void Update(GameTime gameTime)
         {
             if (Frames.Count == 0)
@@ -83,6 +92,7 @@ namespace Aerolite.Components
                     }
                     else
                     {
+                        CompleteAnimation = true;
                         //stay stuck on last frame
                     }
                 }
@@ -95,7 +105,7 @@ namespace Aerolite.Components
 
         public void Draw( SpriteBatch batch)
         {
-            if (Frames.Count == 0)
+            if (Frames.Count == 0 || CompleteAnimation)
             {
                 return;
             }
@@ -137,6 +147,7 @@ namespace Aerolite.Components
             if (_animations.ContainsKey(name))
             {
                 CurrentAnimation = _animations[name];
+                CurrentAnimation.ResetAnimation();
             }
         }
 

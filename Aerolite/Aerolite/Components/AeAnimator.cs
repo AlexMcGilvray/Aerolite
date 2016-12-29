@@ -16,7 +16,7 @@ namespace Aerolite.Components
         public int FrameWidth { get; private set; }
         public int FrameHeight { get; private set; }
         public int Duration { get; private set; }
-        
+
         public AeAnimationFrame(int x, int y, int width, int height, int duration)
         {
             FrameX = x;
@@ -26,6 +26,8 @@ namespace Aerolite.Components
             Duration = duration;
         }
     }
+
+    public delegate void AeEventOnAnimationComplete(object sender);
 
     public class AeAnimation
     {
@@ -39,15 +41,17 @@ namespace Aerolite.Components
 
         public bool CompleteAnimation { get; private set; } = false;
 
-        public AeAnimation(Texture2D texture, AeAnimator parent,AeAnimationFrame[] frames = null)
+        public event AeEventOnAnimationComplete OnAnimationComplete;
+
+        public AeAnimation(Texture2D texture, AeAnimator parent, AeAnimationFrame[] frames = null)
         {
             Texture = texture;
             Parent = parent;
             AddFrames(frames);
         }
 
-        public AeAnimation(string pathToTexture, AeAnimator parent,AeAnimationFrame[] frames = null)
-            :this(AeEngine.Singleton().TextureManager.LoadTexture(pathToTexture),parent,frames)
+        public AeAnimation(string pathToTexture, AeAnimator parent, AeAnimationFrame[] frames = null)
+            : this(AeEngine.Singleton().TextureManager.LoadTexture(pathToTexture), parent, frames)
         { }
 
         public void AddFrame(AeAnimationFrame frame)
@@ -92,8 +96,9 @@ namespace Aerolite.Components
                     }
                     else
                     {
-                        CompleteAnimation = true;
                         //stay stuck on last frame
+                        CompleteAnimation = true;
+                        OnAnimationComplete?.Invoke(this);
                     }
                 }
                 else
@@ -103,7 +108,7 @@ namespace Aerolite.Components
             }
         }
 
-        public void Draw( SpriteBatch batch)
+        public void Draw(SpriteBatch batch)
         {
             if (Frames.Count == 0 || CompleteAnimation)
             {
@@ -112,7 +117,7 @@ namespace Aerolite.Components
             AeAnimationFrame frame = Frames[_currentFrame];
             Rectangle destinationRectangle;
             Rectangle sourceRectangle;
-           
+
             destinationRectangle.X = (int)Math.Round(Parent.Owner.Transform.X);
             destinationRectangle.Y = (int)Math.Round(Parent.Owner.Transform.Y);
             destinationRectangle.Width = frame.FrameWidth;
@@ -124,7 +129,7 @@ namespace Aerolite.Components
             sourceRectangle.Height = frame.FrameHeight;
 
             //TODO change this to use a color component
-            batch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+            batch.Draw(Texture, destinationRectangle, sourceRectangle, Parent.RenderColor.CurrentColor);
         }
     }
 
@@ -132,7 +137,14 @@ namespace Aerolite.Components
     {
         private Dictionary<string, AeAnimation> _animations = new Dictionary<string, AeAnimation>();
         public AeAnimation CurrentAnimation { get; private set; }
-        
+        public AeColor RenderColor { get; private set; }
+
+        public AeAnimator()
+        {
+            RenderColor = new AeColor();
+            AddComponent(RenderColor);
+        }
+
         public void Add(string name, AeAnimation animation)
         {
             _animations.Add(name, animation);
@@ -153,6 +165,7 @@ namespace Aerolite.Components
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             if (CurrentAnimation != null)
             {
                 CurrentAnimation.Update(gameTime);
@@ -161,6 +174,7 @@ namespace Aerolite.Components
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
+            base.Draw(gameTime, batch);
             if (CurrentAnimation != null)
             {
                 CurrentAnimation.Draw(batch);

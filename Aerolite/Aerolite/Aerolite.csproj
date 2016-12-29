@@ -45,7 +45,9 @@
     <Compile Include="AeEngine.cs" />
     <Compile Include="Components\AeAABB.cs" />
     <Compile Include="Components\AeAnimator.cs" />
+    <Compile Include="Components\AeColor.cs" />
     <Compile Include="Components\AeComponent.cs" />
+    <Compile Include="Components\AeInterpolator.cs" />
     <Compile Include="Entity\AeEntity.cs" />
     <Compile Include="Entity\AeEntityLayer.cs" />
     <Compile Include="Entity\AeLayer.cs" />
@@ -66,7 +68,6 @@
     <Compile Include="Subsystems\Input\AeKeyboard.cs" />
     <Compile Include="Subsystems\Input\AeMouse.cs" />
     <Compile Include="Util\AeRandom.cs" />
-    <Compile Include="Util\Interpolators\AeInterpolator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

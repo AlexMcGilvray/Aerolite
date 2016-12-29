@@ -21,6 +21,7 @@ namespace Aerolite.HighLevel2D
 
         public AeAnimator Animator { get; private set; }
         
+
         public AeSprite(string texturePath = null) : base()
         {
             Animator = new AeAnimator();
@@ -28,6 +29,8 @@ namespace Aerolite.HighLevel2D
             {
                 AeAnimation animation = new AeAnimation(texturePath, Animator);
                 AeAnimationFrame frame1 = new AeAnimationFrame(0, 0, animation.Texture.Width, animation.Texture.Height, -1);
+                SizeX = animation.Texture.Width;
+                SizeY = animation.Texture.Height;
                 animation.AddFrame(frame1);
                 Animator.Add("default",animation);
             }

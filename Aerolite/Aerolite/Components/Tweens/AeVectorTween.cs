@@ -14,18 +14,22 @@ namespace Aerolite.Components.Tweens
         private Vector2 _source;
         private Vector2 _target;
 
-        public AeVectorTween(Vector2 source, Vector2 target)
+        public bool Complete { get; private set; } = false;
+
+        public AeVectorTween()
+        {
+            _interpolator = new AeInterpolator();
+            AddComponent(_interpolator);
+        }
+
+        public void Start(Vector2 source, Vector2 target,int tweenTimeMilliseconds = 3000)
         {
             _source = source;
             _target = target;
-            _interpolator = new AeInterpolator();
-        }
-
-        public void Start(int tweenTimeMilliseconds = 3000)
-        {
             _interpolator.Start(tweenTimeMilliseconds);
+            Complete = false;
+            _interpolator.OnInterpolationComplete += x => Complete = true;
         }
-
 
         public Vector2 GetCurrentValue()
         {

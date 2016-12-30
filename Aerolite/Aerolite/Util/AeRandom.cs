@@ -19,5 +19,10 @@ namespace Aerolite.Util
         {
             return (float)_random.NextDouble();
         }
+
+        public bool CoinToss()
+        {
+            return GetFloat() > 0.5f ? true : false;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Aerolite.Components
 
     public class AeInterpolator : AeComponent
     {
-        public float CurrentValue { get { return _currentTime / (float)CurrentTarget; } }
+        public float CurrentLinearValue { get { return _currentTime / (float)CurrentTarget; } }
         public bool IsRunning { get; private set; } = false;
 
         public event AeEventOnInterpolationComplete OnInterpolationComplete;

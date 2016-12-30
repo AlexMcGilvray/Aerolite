@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aerolite.Util;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,27 +49,15 @@ namespace Aerolite.Components
             }
         }
 
-        private byte GetInterpolatedColorValue(byte source, byte target)
-        {
-            return (byte)(source + (target - source) * _colorInterpolator.CurrentValue);
-        }
-
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             if (_colorInterpolator.IsRunning)
             {
-                //byte red = (byte)((_baseColor.R * (1 / _colorInterpolator.CurrentValue)) + (_targetColor.R * _colorInterpolator.CurrentValue));
-                //byte green = (byte)((_baseColor.G * (1 / _colorInterpolator.CurrentValue)) + (_targetColor.G * _colorInterpolator.CurrentValue));
-                //byte blue = (byte)((_baseColor.B * (1 / _colorInterpolator.CurrentValue)) + (_targetColor.B * _colorInterpolator.CurrentValue));
-
-                byte red = GetInterpolatedColorValue(_baseColor.R, _targetColor.R);
-                byte green = GetInterpolatedColorValue(_baseColor.G, _targetColor.G);
-                byte blue = GetInterpolatedColorValue(_baseColor.B, _targetColor.B);
-
-                _currentColor.R = red;
-                _currentColor.G = green;
-                _currentColor.B = blue;
+                float currentInterpolatorValue = _colorInterpolator.CurrentLinearValue;
+                _currentColor.R = AeMath.GetTweenValue(_baseColor.R, _targetColor.R, currentInterpolatorValue);
+                _currentColor.G = AeMath.GetTweenValue(_baseColor.G, _targetColor.G, currentInterpolatorValue);
+                _currentColor.B = AeMath.GetTweenValue(_baseColor.B, _targetColor.B, currentInterpolatorValue);
             }
         }
     }

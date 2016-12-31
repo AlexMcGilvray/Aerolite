@@ -19,12 +19,19 @@ namespace Aerolite.Subsystems.Graphics
         public AeGraphics(GraphicsDeviceManager graphicsDeviceManager)
         {
             GraphicsDeviceManager = graphicsDeviceManager;
-            //graphicsDeviceManager.PreferMultiSampling = false;
+
         }
 
         public void Load()
         {
             Batch = new SpriteBatch(GraphicsDeviceManager.GraphicsDevice);
+
+            //probably good to leave this on for perf, doesn't solve text aliasing issues though.
+
+            //GraphicsDeviceManager.PreferMultiSampling = false;
+            //RasterizerState state = new RasterizerState();
+            //state.MultiSampleAntiAlias = false;
+            //GraphicsDeviceManager.GraphicsDevice.RasterizerState = state;
         }
     }
 }

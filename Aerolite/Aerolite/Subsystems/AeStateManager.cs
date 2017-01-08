@@ -12,12 +12,30 @@ namespace Aerolite.Subsystems
     {
         private List<AeState> _states = new List<AeState>();
 
+        /// <summary>
+        /// state changes are usually done during update which means we would modify the state collection while
+        /// we're iterating on it. So we defer all state manipulations until after all state updates are complete. 
+        /// </summary>
+        private List<Action> _stateManiulationDeferredOperations = new List<Action>();
+
         public AeStateManager()
         {        }
 
         public void Add(AeState state)
         {
-            _states.Add(state);
+            _stateManiulationDeferredOperations.Add(() =>
+           {
+               _states.Add(state);
+           });
+        }
+
+        public void ChangeState(AeState state)
+        {
+            _stateManiulationDeferredOperations.Add(() =>
+            {
+                _states.Clear();
+                _states.Add(state);
+            });
         }
         
         public void Update(GameTime gameTime)
@@ -28,6 +46,11 @@ namespace Aerolite.Subsystems
             {
                 state.Update(gameTime);
             }
+            foreach(var operation in _stateManiulationDeferredOperations)
+            {
+                operation.Invoke();
+            }
+            _stateManiulationDeferredOperations.Clear();
         }
 
         public void Draw(GameTime gameTime,SpriteBatch spriteBatch)

@@ -45,6 +45,7 @@
     <Compile Include="AeEngine.cs" />
     <Compile Include="Components\AeAABB.cs" />
     <Compile Include="Components\AeAnimator.cs" />
+    <Compile Include="Components\AeCamera.cs" />
     <Compile Include="Components\AeColor.cs" />
     <Compile Include="Components\AeComponent.cs" />
     <Compile Include="Components\AeInterpolator.cs" />

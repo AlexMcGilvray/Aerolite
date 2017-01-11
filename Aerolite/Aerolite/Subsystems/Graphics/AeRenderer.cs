@@ -53,9 +53,7 @@ namespace Aerolite.Subsystems.Graphics
             {
                 graphicsDeviceManager.GraphicsDevice.SetRenderTarget(_finalPassTarget);
                 graphicsDeviceManager.GraphicsDevice.Clear(graphicsSettings.ClearColorFinalRenderTarget);
-                _graphics.Batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
                 stateManager.Draw(gameTime, _graphics.Batch);
-                _graphics.Batch.End();
                 graphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
                 graphicsDeviceManager.GraphicsDevice.Clear(graphicsSettings.ClearColorBackBuffer);
                 _graphics.Batch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);

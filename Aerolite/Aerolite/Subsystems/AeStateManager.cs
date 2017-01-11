@@ -58,6 +58,7 @@ namespace Aerolite.Subsystems
             foreach (AeState state in _states)
             {
                 state.Draw(gameTime, spriteBatch);
+
             }
         }
     }

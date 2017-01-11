@@ -6,13 +6,15 @@ using System.Collections.Generic;
 namespace Aerolite.Entity
 {
     //todo add enumerable support
+    //todo this inherits from entity which also has children. Either remove the concept of layers or extract a
+    //updatable/renderable interface layer can inherit from where it won't have things like 2 collections of entities
     public class AeLayer<T> : AeEntity where T:AeEntity
     {
         private const int InitialLayerSize = 64;
 
         private List<T> _entities;
 
-        public List<T> Children { get { return _entities; } }
+        public List<T> Entities { get { return _entities; } }
         
         public AeLayer(int initialCollectionSize = InitialLayerSize)
         {

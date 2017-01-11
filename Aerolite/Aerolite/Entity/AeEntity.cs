@@ -17,7 +17,7 @@ namespace Aerolite.Entity
         public AeTransform Transform { get; private set; }
         public AeAABB CollisionHull { get; private set; }
         private List<AeComponent> Components { get; set; }
-        private List<AeEntity> Children { get; set; }
+        private List<AeEntity> Entities { get; set; }
 
         protected AeEngine Engine { get; private set; }
         
@@ -27,7 +27,7 @@ namespace Aerolite.Entity
             Transform = new AeTransform();
             CollisionHull = new AeAABB();
             Components = new List<AeComponent>();
-            Children = new List<AeEntity>();
+            Entities = new List<AeEntity>();
         }
 
         public void AddComponent(AeComponent component)
@@ -38,7 +38,7 @@ namespace Aerolite.Entity
 
         public void AddChild(AeEntity entity)
         {
-            Children.Add(entity);
+            Entities.Add(entity);
         }
         //TODO switch to update/doupdate pattern so alive bool will work
         public virtual void Update(GameTime gameTime)
@@ -50,7 +50,7 @@ namespace Aerolite.Entity
                 {
                     cmp.Update(gameTime);
                 }
-                foreach (var child in Children)
+                foreach (var child in Entities)
                 {
                     child.Update(gameTime);
                 }
@@ -65,7 +65,7 @@ namespace Aerolite.Entity
                 {
                     cmp.Draw(gameTime, batch);
                 }
-                foreach (var child in Children)
+                foreach (var child in Entities)
                 {
                     child.Draw(gameTime, batch);
                 }

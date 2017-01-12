@@ -19,9 +19,9 @@ namespace Aerolite.Subsystems
         private List<Action> _stateManiulationDeferredOperations = new List<Action>();
 
         public AeStateManager()
-        {        }
+        { }
 
-        public void Add(AeState state)
+        public void PushState(AeState state)
         {
             _stateManiulationDeferredOperations.Add(() =>
            {
@@ -42,9 +42,9 @@ namespace Aerolite.Subsystems
         {
             //states shouldn't bleed into each other which technically means 
             //I might be able to do this with a parallel for....
-            foreach(AeState state in _states)
+            for (int i = _states.Count - 1; i > 0; --i)
             {
-                state.Update(gameTime);
+                _states[i].Update(gameTime);
             }
             foreach(var operation in _stateManiulationDeferredOperations)
             {
@@ -55,10 +55,9 @@ namespace Aerolite.Subsystems
 
         public void Draw(GameTime gameTime,SpriteBatch spriteBatch)
         {
-            foreach (AeState state in _states)
+            for (int i = _states.Count - 1; i >= 0; --i)
             {
-                state.Draw(gameTime, spriteBatch);
-
+                _states[i].Draw(gameTime, spriteBatch);
             }
         }
     }

@@ -13,9 +13,11 @@ namespace Aerolite.Components
     {
         public AeEntity Owner { get; set; }
         private List<AeComponent> _components = new List<AeComponent>();
+        protected AeEngine Engine;
 
         public AeComponent()
         {
+            Engine = AeEngine.Singleton();
         }
 
         public void AddComponent(AeComponent comp)

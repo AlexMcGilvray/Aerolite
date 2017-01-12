@@ -16,8 +16,8 @@ namespace Aerolite.Subsystems.Input
 
     public class AeMouse
     {
-        private MouseState _deviceCoordinates;
-        private MouseState _previousDeviceCoordinates;
+        private MouseState _mouseState;
+        private MouseState _previousMouseState;
 
         private AeMouseData _mouseData = new AeMouseData();
 
@@ -25,31 +25,31 @@ namespace Aerolite.Subsystems.Input
 
         public AeMouse(AeGraphics graphics)
         {
-            _deviceCoordinates = Mouse.GetState();
-            _previousDeviceCoordinates = Mouse.GetState();
+            _mouseState = Mouse.GetState();
+            _previousMouseState = Mouse.GetState();
             _graphics = graphics;
         }
 
         internal void Poll()
         {
-            _previousDeviceCoordinates = _deviceCoordinates;
-            _deviceCoordinates = Mouse.GetState();
+            _previousMouseState = _mouseState;
+            _mouseState = Mouse.GetState();
 
-            _mouseData.X = (int)(_deviceCoordinates.X * (_graphics.GraphicsSettings.GameResolutionWidth / ((float)_graphics.GraphicsSettings.ScreenResolutionWidth)));
-            _mouseData.Y = (int)(_deviceCoordinates.Y * (_graphics.GraphicsSettings.GameResolutionHeight/ ((float)_graphics.GraphicsSettings.ScreenResolutionHeight)));
+            _mouseData.X = (int)(_mouseState.X * (_graphics.GraphicsSettings.GameResolutionWidth / ((float)_graphics.GraphicsSettings.ScreenResolutionWidth)));
+            _mouseData.Y = (int)(_mouseState.Y * (_graphics.GraphicsSettings.GameResolutionHeight/ ((float)_graphics.GraphicsSettings.ScreenResolutionHeight)));
         }
 
-        private MouseState State { get { return _deviceCoordinates; } }
+        private MouseState State { get { return _mouseState; } }
         public int X { get { return _mouseData.X; } }
         public int Y { get { return _mouseData.Y; } }
-        public int XDelta { get { return _deviceCoordinates.X - _previousDeviceCoordinates.X; } }
-        public int YDelta { get { return _deviceCoordinates.Y - _previousDeviceCoordinates.Y; } }
+        public int XDelta { get { return _mouseState.X - _previousMouseState.X; } }
+        public int YDelta { get { return _mouseState.Y - _previousMouseState.Y; } }
 
         public bool LeftClick
         {
             get
             {
-                if ((_deviceCoordinates.LeftButton == ButtonState.Pressed) && (_previousDeviceCoordinates.LeftButton == ButtonState.Released))
+                if ((_mouseState.LeftButton == ButtonState.Pressed) && (_previousMouseState.LeftButton == ButtonState.Released))
                 {
                     return true;
                 }
@@ -64,7 +64,7 @@ namespace Aerolite.Subsystems.Input
         {
             get
             {
-                if ((_deviceCoordinates.LeftButton == ButtonState.Pressed) && (_previousDeviceCoordinates.LeftButton == ButtonState.Pressed))
+                if ((_mouseState.LeftButton == ButtonState.Pressed) && (_previousMouseState.LeftButton == ButtonState.Pressed))
                 {
                     return true;
                 }
@@ -79,7 +79,7 @@ namespace Aerolite.Subsystems.Input
         {
             get
             {
-                if ((_deviceCoordinates.LeftButton == ButtonState.Released) && (_previousDeviceCoordinates.LeftButton == ButtonState.Pressed))
+                if ((_mouseState.LeftButton == ButtonState.Released) && (_previousMouseState.LeftButton == ButtonState.Pressed))
                 {
                     return true;
                 }

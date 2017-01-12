@@ -19,7 +19,10 @@ namespace Aerolite.Entity
         private List<AeComponent> Components { get; set; }
         private List<AeEntity> Entities { get; set; }
 
+        private List<AeComponent> _privateComponents;
+
         protected AeEngine Engine { get; private set; }
+
         
         public AeEntity()
         {
@@ -28,6 +31,8 @@ namespace Aerolite.Entity
             CollisionHull = new AeAABB();
             Components = new List<AeComponent>();
             Entities = new List<AeEntity>();
+
+            _privateComponents = new List<AeComponent>() { Transform, CollisionHull };
         }
 
         public void AddComponent(AeComponent component)
@@ -46,6 +51,10 @@ namespace Aerolite.Entity
             if (Alive)
             {
                 CollisionHull.SetPosition((int)Transform.X, (int)Transform.Y);
+                foreach(var cmp in _privateComponents)
+                {
+                    cmp.Update(gameTime);
+                }
                 foreach (var cmp in Components)
                 {
                     cmp.Update(gameTime);
@@ -61,6 +70,10 @@ namespace Aerolite.Entity
         {
             if (Alive)
             {
+                foreach (var cmp in _privateComponents)
+                {
+                    cmp.Draw(gameTime, batch);
+                }
                 foreach (var cmp in Components)
                 {
                     cmp.Draw(gameTime, batch);

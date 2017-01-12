@@ -15,6 +15,15 @@ namespace Aerolite.Components
         {
             Transform = new AeTransform();
         }
+
+        public Vector2 ScreenToWorld(Vector2 screenCoordinate)
+        {
+            Vector2 convertedCoordinates;
+            convertedCoordinates.X = screenCoordinate.X - Transform.X;
+            convertedCoordinates.Y = screenCoordinate.Y - Transform.Y;
+            return convertedCoordinates;
+        }
+
         public Matrix GetTransform()
         {
             return Matrix.CreateTranslation(Transform.X, Transform.Y, 0.0f);

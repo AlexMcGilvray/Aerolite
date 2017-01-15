@@ -1,4 +1,5 @@
 ﻿using Aerolite.Components;
+using Aerolite.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Aerolite.Entity
 {
-    public class AeEntity
+    public class AeEntity : IAeEntity
     {
         public bool Alive { get; set; } = true;
         public bool IsInitialized { get; private set; }
@@ -17,7 +18,7 @@ namespace Aerolite.Entity
         public AeTransform Transform { get; private set; }
         public AeAABB CollisionHull { get; private set; }
         private List<AeComponent> Components { get; set; }
-        private List<AeEntity> Entities { get; set; }
+        private List<IAeEntity> Entities { get; set; }
 
         private List<AeComponent> _privateComponents;
 
@@ -30,7 +31,7 @@ namespace Aerolite.Entity
             Transform = new AeTransform();
             CollisionHull = new AeAABB();
             Components = new List<AeComponent>();
-            Entities = new List<AeEntity>();
+            Entities = new List<IAeEntity>();
 
             _privateComponents = new List<AeComponent>() { Transform, CollisionHull };
         }
@@ -41,7 +42,7 @@ namespace Aerolite.Entity
             Components.Add(component);
         }
 
-        public void AddChild(AeEntity entity)
+        public void AddChild(IAeEntity entity)
         {
             Entities.Add(entity);
         }

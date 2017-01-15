@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aerolite.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Aerolite.Entity
     //todo add enumerable support
     //todo this inherits from entity which also has children. Either remove the concept of layers or extract a
     //updatable/renderable interface layer can inherit from where it won't have things like 2 collections of entities
-    public class AeLayer<T> : AeEntity where T:AeEntity
+    public class AeLayer<T> : IAeEntity where T: IAeEntity
     {
         private const int InitialLayerSize = 64;
 
@@ -30,20 +31,18 @@ namespace Aerolite.Entity
         {
             throw new NotImplementedException();
         }
-
-        public override void Update(GameTime gameTime)
+  
+        public virtual void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-            foreach(var ent in _entities)
+            foreach (var ent in _entities)
             {
                 ent.Update(gameTime);
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch batch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch batch)
         {
-            base.Draw(gameTime, batch);
-            foreach(var ent in _entities)
+            foreach (var ent in _entities)
             {
                 ent.Draw(gameTime, batch);
             }

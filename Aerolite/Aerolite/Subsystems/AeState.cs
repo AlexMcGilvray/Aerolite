@@ -7,6 +7,7 @@ using Aerolite.Entity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Aerolite.Components;
+using Aerolite.Interfaces;
 
 namespace Aerolite.Subsystems
 {
@@ -14,7 +15,7 @@ namespace Aerolite.Subsystems
     //actually.. in this case maybe just get rid of the list and use the collections built into entity
     public class AeState : AeEntity
     {
-        private List<AeEntity> _entities = new List<AeEntity>(); //this has got to go
+        private AeEntityLayer _entities = new AeEntityLayer();
         public AeCamera Camera { get; private set; }
         public bool CameraEnabled { get; set; }
 
@@ -25,7 +26,7 @@ namespace Aerolite.Subsystems
             CameraEnabled = true;
         }
 
-        protected void AddEntity(AeEntity entity)
+        protected void AddEntity(IAeEntity entity)
         {
             _entities.Add(entity);
         }
@@ -33,7 +34,7 @@ namespace Aerolite.Subsystems
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            foreach (var ent in _entities)
+            foreach (var ent in _entities.Entities)
             {
                 ent.Update(gameTime);
             }
@@ -50,7 +51,7 @@ namespace Aerolite.Subsystems
                 batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             }
             base.Draw(gameTime, batch);
-            foreach (var ent in _entities)
+            foreach (var ent in _entities.Entities)
             {
                 ent.Draw(gameTime, batch);
             }

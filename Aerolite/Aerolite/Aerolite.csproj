@@ -58,6 +58,7 @@
     <Compile Include="Entity\AeSpriteLayer.cs" />
     <Compile Include="Entity\AeText.cs" />
     <Compile Include="HighLevel2D\AeSprite.cs" />
+    <Compile Include="Interfaces\IAeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AeGame.cs" />
     <Compile Include="Subsystems\AeState.cs" />
@@ -73,6 +74,9 @@
     <Compile Include="Util\AeMath.cs" />
     <Compile Include="Util\AeRandom.cs" />
     <Compile Include="Util\AeUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Docs\project.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,18 +11,17 @@ using Aerolite.Interfaces;
 
 namespace Aerolite.Subsystems
 {
-    //todo just like layer this has the issue of have 2 entity collections because it inherits from AeEntity rather than from an updatable/renderable interface
-    //actually.. in this case maybe just get rid of the list and use the collections built into entity
-    public class AeState : AeEntity
+    public class AeState : IAeEntity
     {
         private AeEntityLayer _entities = new AeEntityLayer();
         public AeCamera Camera { get; private set; }
         public bool CameraEnabled { get; set; }
+        public AeEngine Engine { get; private set; }
 
         public AeState() : base()
         {
+            Engine = AeEngine.Singleton();
             Camera = new AeCamera();
-            AddComponent(Camera);
             CameraEnabled = true;
         }
 
@@ -31,16 +30,16 @@ namespace Aerolite.Subsystems
             _entities.Add(entity);
         }
 
-        public override void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            Camera.Update(gameTime);
             foreach (var ent in _entities.Entities)
             {
                 ent.Update(gameTime);
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch batch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch batch)
         {
             if (CameraEnabled)
             {
@@ -50,7 +49,6 @@ namespace Aerolite.Subsystems
             {
                 batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             }
-            base.Draw(gameTime, batch);
             foreach (var ent in _entities.Entities)
             {
                 ent.Draw(gameTime, batch);

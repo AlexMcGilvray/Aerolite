@@ -20,7 +20,7 @@ namespace AeroliteTestGame
 
         AeSprite _backgroundSky;
 
-        AeLayer _spriteLayer = new AeLayer();
+        AeSpriteLayer _spriteLayer = new AeSpriteLayer();
 
         public TestState()
         {

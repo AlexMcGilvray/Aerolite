@@ -1,10 +1,14 @@
 ﻿# Project TODO and log
 
-**Todo**
+
+## Todo
+
+
+## Done
+
+*2017 Jan 14*
 
 * Separate Updatable/Renderable into interfaces so we don't have madness inheriting from AeEntity
-
-**Done**
 
 *2017 Jan 11*
 

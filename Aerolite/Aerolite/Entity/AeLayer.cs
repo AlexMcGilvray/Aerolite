@@ -22,6 +22,11 @@ namespace Aerolite.Entity
             _entities = new List<T>(InitialLayerSize);
         }
 
+        public void Reverse()
+        {
+            _entities.Reverse();
+        }
+
         public void Add(T entity)
         {
             _entities.Add(entity);

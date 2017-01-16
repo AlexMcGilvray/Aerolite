@@ -14,6 +14,8 @@ namespace Aerolite.Components
         public AeCamera()
         {
             Transform = new AeTransform();
+            Transform.ScaleX = 1.0f;
+            Transform.ScaleY = 1.0f;
         }
 
         public Vector2 ScreenToWorld(Vector2 screenCoordinate)
@@ -26,7 +28,9 @@ namespace Aerolite.Components
 
         public Matrix GetTransform()
         {
-            return Matrix.CreateTranslation(Transform.X, Transform.Y, 0.0f);
+//            return Matrix.CreateScale(Transform.ScaleX, Transform.ScaleY, 1.0f) * Matrix.CreateTranslation(Transform.X, Transform.Y, 0.0f);
+
+            return Matrix.CreateScale(Transform.ScaleX,Transform.ScaleY,1.0f) * Matrix.CreateTranslation(Transform.X, Transform.Y, 0.0f);
         }
     }
 }

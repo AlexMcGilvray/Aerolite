@@ -20,11 +20,12 @@ namespace Aerolite.HighLevel2D
         public Vector2 Size { get { return _size; } set { _size = value; } }
 
         public AeAnimator Animator { get; private set; }
-        
+        public AeColor RenderColor { get; set; }
 
         public AeSprite(string texturePath = null) : base()
         {
             Animator = new AeAnimator();
+            RenderColor = new AeColor();
             if (!string.IsNullOrEmpty(texturePath))
             {
                 AeAnimation animation = new AeAnimation(texturePath, Animator);
@@ -35,10 +36,12 @@ namespace Aerolite.HighLevel2D
                 Animator.Add("default",animation);
             }
             AddComponent(Animator);
+            AddComponent(RenderColor);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
+            Animator.RenderColor = RenderColor;
             base.Draw(gameTime, batch);
         }
     }

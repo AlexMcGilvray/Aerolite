@@ -108,9 +108,7 @@ namespace Aerolite.Subsystems.Graphics
             else
             {
                 graphicsDeviceManager.GraphicsDevice.Clear(graphicsSettings.ClearColorFinalRenderTarget);
-                _graphics.Batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
                 stateManager.Draw(gameTime, _graphics.Batch);
-                _graphics.Batch.End();
             }
         }
     }

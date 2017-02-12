@@ -34,7 +34,7 @@ namespace Aerolite.Entity
 
         public void Remove(T entity)
         {
-            throw new NotImplementedException();
+            _entities.Remove(entity);
         }
   
         public virtual void Update(GameTime gameTime)

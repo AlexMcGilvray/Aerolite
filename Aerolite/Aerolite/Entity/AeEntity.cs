@@ -84,7 +84,6 @@ namespace Aerolite.Entity
                     child.Draw(gameTime, batch);
                 }
             }
-            
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Aerolite.Components;
 using Aerolite.Interfaces;
+using Aerolite.Subsystems.Input;
 
 namespace Aerolite.Subsystems
 {
@@ -17,6 +18,7 @@ namespace Aerolite.Subsystems
         public AeCamera Camera { get; private set; }
         public bool CameraEnabled { get; set; }
         public AeEngine Engine { get; private set; }
+        public AeInput Input { get { return Engine.Input; } }
 
         public AeState() : base()
         {

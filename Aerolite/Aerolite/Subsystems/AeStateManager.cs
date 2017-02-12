@@ -42,7 +42,7 @@ namespace Aerolite.Subsystems
         {
             //states shouldn't bleed into each other which technically means 
             //I might be able to do this with a parallel for....
-            for (int i = _states.Count - 1; i > 0; --i)
+            for (int i = _states.Count - 1; i >= 0; --i)
             {
                 _states[i].Update(gameTime);
             }

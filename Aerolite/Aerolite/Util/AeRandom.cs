@@ -15,6 +15,8 @@ namespace Aerolite.Util
             _random = new Random();
         }
 
+        public Random RandomSource { get { return _random; } }
+
         public float GetFloat()
         {
             return (float)_random.NextDouble();

@@ -1,4 +1,5 @@
 ﻿using Aerolite.Entity;
+using Aerolite.HighLevel2D;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -137,7 +138,7 @@ namespace Aerolite.Components
     {
         private Dictionary<string, AeAnimation> _animations = new Dictionary<string, AeAnimation>();
         public AeAnimation CurrentAnimation { get; private set; }
-        public AeColor RenderColor { get; private set; }
+        public AeColor RenderColor { get; set; }
 
         public AeAnimator()
         {

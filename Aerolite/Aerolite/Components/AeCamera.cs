@@ -28,9 +28,8 @@ namespace Aerolite.Components
 
         public Matrix GetTransform()
         {
-//            return Matrix.CreateScale(Transform.ScaleX, Transform.ScaleY, 1.0f) * Matrix.CreateTranslation(Transform.X, Transform.Y, 0.0f);
-
-            return Matrix.CreateScale(Transform.ScaleX,Transform.ScaleY,1.0f) * Matrix.CreateTranslation(Transform.X, Transform.Y, 0.0f);
+            return Matrix.CreateScale(Transform.ScaleX,Transform.ScaleY,1.0f) * 
+                Matrix.CreateTranslation(Transform.X, Transform.Y, 0.0f);
         }
     }
 }

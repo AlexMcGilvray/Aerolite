@@ -14,6 +14,12 @@ namespace Aerolite.Components
         private float orientationX, orientationY;
         private float scaleX, scaleY;
 
+        public AeTransform()
+        {
+            scaleX = 1.0f;
+            scaleY = 1.0f;
+        }
+
         public Vector2 Position
         {
             get

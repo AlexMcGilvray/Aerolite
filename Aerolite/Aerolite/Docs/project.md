@@ -6,6 +6,10 @@
 
 ## Done
 
+*2017 Feb 12*
+
+* Updated sprite and animator classes to propagate render color downwards
+
 *2017 Jan 14*
 
 * Separate Updatable/Renderable into interfaces so we don't have madness inheriting from AeEntity

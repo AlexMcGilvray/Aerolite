@@ -45,8 +45,8 @@ namespace Aerolite.Subsystems.Graphics
 
             if (!graphicsSettings.Valid)
             {
-                _graphics.GraphicsDeviceManager.ApplyChanges();
                 _graphics.GraphicsDeviceManager.GraphicsDevice.Viewport = graphicsSettings.Viewport;
+                _graphics.GraphicsDeviceManager.ApplyChanges();
                 _graphics.GraphicsSettings.Valid = true;
             }
             if (!graphicsSettings.ResolutionMatch)

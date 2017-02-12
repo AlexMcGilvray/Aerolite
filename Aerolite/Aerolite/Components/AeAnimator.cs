@@ -119,8 +119,8 @@ namespace Aerolite.Components
             Rectangle destinationRectangle;
             Rectangle sourceRectangle;
 
-            destinationRectangle.X = (int)Math.Round(Parent.Owner.Transform.X);
-            destinationRectangle.Y = (int)Math.Round(Parent.Owner.Transform.Y);
+            destinationRectangle.X = (int)Math.Floor(Parent.Owner.Transform.X);
+            destinationRectangle.Y = (int)Math.Floor(Parent.Owner.Transform.Y);
             destinationRectangle.Width = frame.FrameWidth;
             destinationRectangle.Height = frame.FrameHeight;
 

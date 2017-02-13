@@ -71,6 +71,7 @@
     <Compile Include="Subsystems\Input\AeInput.cs" />
     <Compile Include="Subsystems\Input\AeKeyboard.cs" />
     <Compile Include="Subsystems\Input\AeMouse.cs" />
+    <Compile Include="Subsystems\Input\AeTouch.cs" />
     <Compile Include="Util\AeMath.cs" />
     <Compile Include="Util\AeRandom.cs" />
     <Compile Include="Util\AeUtil.cs" />

@@ -18,6 +18,20 @@ namespace Aerolite.Components
             Transform.ScaleY = 1.0f;
         }
 
+        /// <summary>
+        /// NOTE doesnt take into account scale yet
+        /// </summary>
+        /// <returns></returns>
+        public AeAABB GetBoundingBox()
+        {
+            AeAABB boundingBox = new AeAABB();
+
+            boundingBox.SetPosition((int)Transform.X, (int)Transform.Y);
+            boundingBox.SetSize(Engine.Graphics.GraphicsSettings.GameResolutionWidth, Engine.Graphics.GraphicsSettings.GameResolutionHeight);
+
+            return boundingBox;
+        }
+
         public Vector2 ScreenToWorld(Vector2 screenCoordinate)
         {
             Vector2 convertedCoordinates;

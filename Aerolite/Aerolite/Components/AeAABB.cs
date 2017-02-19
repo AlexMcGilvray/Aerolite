@@ -19,6 +19,11 @@ namespace Aerolite.Components
             _debugTexture = Engine.TextureManager.CreateFilledRectangle(1, 1, Color.Pink);
         }
 
+        public int X { get { return _rect.X; } }
+        public int Y { get { return _rect.Y; } }
+        public int Width { get { return _rect.Width; } }
+        public int Height { get { return _rect.Height; } }
+
         public void SetSize(int width, int height)
         {
             _rect.Width = width;

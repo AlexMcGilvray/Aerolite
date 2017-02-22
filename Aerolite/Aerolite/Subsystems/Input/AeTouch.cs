@@ -29,5 +29,10 @@ namespace Aerolite.Subsystems.Input
             }
             return false;
         }
+
+        public bool AnyTouched()
+        {
+            return _touchCollection.Count > 0;
+        }
     }
 }

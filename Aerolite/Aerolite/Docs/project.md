@@ -6,6 +6,16 @@
 
 ## Done
 
+*2017 Feb 21*
+
+* Started work on UI module
+* Made a progress bar widget as first UI item
+
+*2017 Feb 18*
+
+* Added some stuff to get a bounding box from the camera.
+* Exposed rectangle properties on AeAABB
+
 *2017 Feb 12*
 
 * Updated sprite and animator classes to propagate render color downwards

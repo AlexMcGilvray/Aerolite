@@ -72,6 +72,8 @@
     <Compile Include="Subsystems\Input\AeKeyboard.cs" />
     <Compile Include="Subsystems\Input\AeMouse.cs" />
     <Compile Include="Subsystems\Input\AeTouch.cs" />
+    <Compile Include="UI\AeProgressBar.cs" />
+    <Compile Include="UI\AeUIElement.cs" />
     <Compile Include="Util\AeMath.cs" />
     <Compile Include="Util\AeRandom.cs" />
     <Compile Include="Util\AeUtil.cs" />
@@ -79,9 +81,7 @@
   <ItemGroup>
     <None Include="Docs\project.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

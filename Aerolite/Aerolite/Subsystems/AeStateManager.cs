@@ -29,6 +29,14 @@ namespace Aerolite.Subsystems
            });
         }
 
+        public void PopState()
+        {
+            _stateManiulationDeferredOperations.Add(() =>
+            {
+                _states.RemoveAt(_states.Count - 1);
+            });
+        }
+
         public void ChangeState(AeState state)
         {
             _stateManiulationDeferredOperations.Add(() =>
@@ -37,25 +45,28 @@ namespace Aerolite.Subsystems
                 _states.Add(state);
             });
         }
-        
+
+
+
         public void Update(GameTime gameTime)
         {
+
             //states shouldn't bleed into each other which technically means 
             //I might be able to do this with a parallel for....
             for (int i = _states.Count - 1; i >= 0; --i)
             {
                 _states[i].Update(gameTime);
             }
-            foreach(var operation in _stateManiulationDeferredOperations)
+            foreach (var operation in _stateManiulationDeferredOperations)
             {
                 operation.Invoke();
             }
             _stateManiulationDeferredOperations.Clear();
         }
 
-        public void Draw(GameTime gameTime,SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            for (int i = _states.Count - 1; i >= 0; --i)
+            for (int i = 0; i < _states.Count; ++i)
             {
                 _states[i].Draw(gameTime, spriteBatch);
             }

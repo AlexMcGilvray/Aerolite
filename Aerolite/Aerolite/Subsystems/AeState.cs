@@ -20,6 +20,9 @@ namespace Aerolite.Subsystems
         public AeEngine Engine { get; private set; }
         public AeInput Input { get { return Engine.Input; } }
 
+        private bool _hasInited = false;
+
+
         public AeState() : base()
         {
             Engine = AeEngine.Singleton();
@@ -34,11 +37,21 @@ namespace Aerolite.Subsystems
 
         public virtual void Update(GameTime gameTime)
         {
+            if (!_hasInited)
+            {
+                Init();
+                _hasInited = true;
+            }
             Camera.Update(gameTime);
             foreach (var ent in _entities.Entities)
             {
                 ent.Update(gameTime);
             }
+        }
+
+        public virtual void Init()
+        {
+
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch batch)

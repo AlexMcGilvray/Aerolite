@@ -37,6 +37,18 @@ namespace Aerolite.Subsystems
             });
         }
 
+        public void PopState(AeState state)
+        {
+            _stateManiulationDeferredOperations.Add(() =>
+            {
+                var indexOfStateToRemove = _states.FindIndex(x => x == state);
+                if (indexOfStateToRemove != -1)
+                {
+                    _states.RemoveAt(indexOfStateToRemove);
+                }
+            });
+        }
+
         public void ChangeState(AeState state)
         {
             _stateManiulationDeferredOperations.Add(() =>

@@ -45,7 +45,7 @@ namespace Aerolite
             //TODO add support for color (interpolaters too!)
             Vector2 pos = Transform.Position;
 
-            batch.DrawString(_font, _text, Transform.Position, Color.White);
+            batch.DrawString(_font, _text, Transform.Position, Color.White,Transform.Orientation,Vector2.Zero,Transform.ScaleX,SpriteEffects.None,0.0f);
         }
     }
 }

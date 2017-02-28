@@ -11,7 +11,7 @@ namespace Aerolite.Components
     public class AeTransform : AeComponent
     {
         private float positionX, positionY;
-        private float orientationX, orientationY;
+        private float orientation;
         private float scaleX, scaleY;
 
         public AeTransform()
@@ -36,8 +36,7 @@ namespace Aerolite.Components
         public float X { get { return positionX; } set { positionX = value; } }
         public float Y { get { return positionY; } set { positionY = value; } }
 
-        public float OrientationX { get { return orientationX; } set { orientationX = value; } }
-        public float OrientationY { get { return orientationY; } set { orientationY = value; } }
+        public float Orientation { get { return orientation; } set { orientation = value; } }
 
         public float ScaleX { get { return scaleX; } set { scaleX = value; } }
         public float ScaleY { get { return scaleY; } set { scaleY = value; } }

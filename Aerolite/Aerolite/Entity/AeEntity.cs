@@ -32,7 +32,6 @@ namespace Aerolite.Entity
             CollisionHull = new AeAABB();
             Components = new List<AeComponent>();
             Entities = new List<IAeEntity>();
-
             _privateComponents = new List<AeComponent>() { Transform, CollisionHull };
         }
 

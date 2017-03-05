@@ -129,8 +129,24 @@ namespace Aerolite.Components
             sourceRectangle.Width = frame.FrameWidth;
             sourceRectangle.Height = frame.FrameHeight;
 
+            Vector2 rotationCenter = Vector2.Zero;
+            rotationCenter.X = Parent.Owner.Transform.RotationCenter.X * sourceRectangle.Width;
+            rotationCenter.Y = Parent.Owner.Transform.RotationCenter.Y * sourceRectangle.Height;
+
+            //fix their positioning if they have a rotation offset
+            destinationRectangle.X += (int)rotationCenter.X;
+            destinationRectangle.Y += (int)rotationCenter.Y;
+
             //TODO change this to use a color component
-            batch.Draw(Texture, destinationRectangle, sourceRectangle, Parent.RenderColor.CurrentColor);
+            batch.Draw(
+                Texture, 
+                destinationRectangle, 
+                sourceRectangle, 
+                Parent.RenderColor.CurrentColor,
+                Parent.Owner.Transform.Orientation,
+                rotationCenter,
+                SpriteEffects.None,
+                0);
         }
     }
 

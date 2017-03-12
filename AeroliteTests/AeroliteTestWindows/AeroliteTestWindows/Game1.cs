@@ -11,6 +11,8 @@ namespace AeroliteTestWindows
     /// </summary>
     public class TestGame : AeGame
     {
+        public static Resources Resources { get; private set; }
+
         public TestGame() : base()
         {
             Content.RootDirectory = "Content";
@@ -19,12 +21,14 @@ namespace AeroliteTestWindows
         protected override void Load()
         {
             base.Load();
+            Resources = new Resources(Engine);
+            Resources.LoadGlobalResources();
             //this.IsMouseVisible = true;
 #if WINDOWS || LINUX
             Window.Position = new Point(10, 10);
             Engine.Graphics.GraphicsSettings.ScalingMode = AeScalingMode.UNIFORM_STRETCH;
-            Engine.Graphics.GraphicsSettings.SetGameResolution(540, 960);
-            Engine.Graphics.GraphicsSettings.SetScreenResolution(540, 960);
+            Engine.Graphics.GraphicsSettings.SetGameResolution(480, 270);
+            Engine.Graphics.GraphicsSettings.SetScreenResolution(960, 540);
 #else
             Engine.Graphics.GraphicsSettings.ScalingMode = AeScalingMode.STRETCH;
             Engine.Graphics.GraphicsSettings.SetGameResolution(540, 960);
@@ -35,7 +39,7 @@ namespace AeroliteTestWindows
             Engine.Graphics.GraphicsDeviceManager.SupportedOrientations = DisplayOrientation.Portrait | DisplayOrientation.PortraitDown;
 #endif
             //Engine.StateManager.PushState(new ShitGameState(Resources));
-            Engine.StateManager.ChangeStateWithCurtains(new EntryState());
+            Engine.StateManager.ChangeStateWithCurtains(new SpriteTestState());
 
             IsMouseVisible = true;
         }

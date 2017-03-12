@@ -16,14 +16,24 @@ namespace Aerolite.Subsystems
         Dictionary<string, Dictionary<string, Texture2D>> textureLib = new Dictionary<string, Dictionary<string, Texture2D>>();
         AeGame gameReference;
 
+        Texture2D _fillTexture;
+
         public AeTextureManager(AeGame myGame)
         {
             //create a default group for people who don't want to manage separate texture groups. 
+
             textureLib.Add(DEFAULT_TEX_GROUP, new Dictionary<string, Texture2D>());
             textureLib.Add(DEFAULT_PROCEDURAL_GROUP, new Dictionary<string, Texture2D>());
+
+            _fillTexture = CreateFilledRectangle(1, 1, Color.White);
+
             gameReference = myGame;
         }
 
+        public Texture2D GetFillTexture()
+        {
+            return _fillTexture;
+        }
 
         public Texture2D CreateFilledRectangle(int width, int height, Color color)
         {

@@ -31,6 +31,7 @@ namespace AeroliteTestWindows
             _sprite.Animator.Add("idle",new AeAnimation("player_ship_ethervoyager",_sprite.Animator,new AeAnimationFrame[] { new AeAnimationFrame(0, 0, 64, 64, 100) }));
             _sprite.Transform.X = 50;
             _sprite.Transform.Y = 50;
+            _sprite.Transform.SetupDebugVizualization();
 
             AddEntity(_sprite);
         }
@@ -57,7 +58,7 @@ namespace AeroliteTestWindows
                 _sprite.Transform.Y += 0.1f * gameTime.ElapsedGameTime.Milliseconds;
             }
 
-            if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.E)
+            if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.E))
             {
                 _sprite.Transform.Orientation -= 0.001f * gameTime.ElapsedGameTime.Milliseconds;
             }

@@ -5,9 +5,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Aerolite.Components
 {
+    public class AeTransformDebugVizualizer : AeComponent
+    {
+        public AeColor HorizontalCrossColor { get; set; }
+        public AeColor VerticalCrossColor { get; set; }
+        public int Size { get; set; } = 19;
+        public AeTransform Transform { get; private set; }
+
+        public AeTransformDebugVizualizer(AeTransform tranform)
+            :base()
+        {
+            Transform = tranform;
+            HorizontalCrossColor = new AeColor(Color.Red);
+            VerticalCrossColor = new AeColor(Color.Green);
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch batch)
+        {
+            base.Draw(gameTime, batch);
+
+            Texture2D fill = Engine.TextureManager.GetFillTexture();
+            Rectangle rect;
+            rect.X = (int)Transform.X - Size / 2;
+            rect.Y = (int)Transform.Y;
+            rect.Width = Size;
+            rect.Height = 1;
+            batch.Draw(fill, rect, HorizontalCrossColor.CurrentColor);
+            rect.X = (int)Transform.X;
+            rect.Y = (int)Transform.Y - Size / 2;
+            rect.Width = 1;
+            rect.Height = Size;
+            batch.Draw(fill, rect, VerticalCrossColor.CurrentColor);
+        }
+    }
+
     public class AeTransform : AeComponent
     {
         private float positionX, positionY;
@@ -20,7 +55,12 @@ namespace Aerolite.Components
             scaleX = 1.0f;
             scaleY = 1.0f;
             RotationCenter = new Vector2(0.0f);
+        }
 
+        public void SetupDebugVizualization()
+        {
+            AeTransformDebugVizualizer debugViz = new AeTransformDebugVizualizer(this);
+            AddComponent(debugViz);
         }
 
         public Vector2 Position

@@ -30,6 +30,22 @@ namespace Aerolite.Subsystems.Input
             return false;
         }
 
+        public Vector2? GetFirstTouchPosition()
+        {
+            var touch = _touchCollection.FirstOrDefault();
+          
+            if (touch != null && touch.State == TouchLocationState.Moved)
+            {
+                var touchModifierX = AeEngine.Singleton().Graphics.GraphicsSettings.GameResolutionWidth  / (float)AeEngine.Singleton().Graphics.GraphicsSettings.ScreenResolutionWidth;
+                var touchModifierY = AeEngine.Singleton().Graphics.GraphicsSettings.GameResolutionHeight  / (float)AeEngine.Singleton().Graphics.GraphicsSettings.ScreenResolutionHeight;
+                var position = touch.Position;
+                position.X *= touchModifierX;
+                position.Y *= touchModifierY;
+                return position;
+            }
+            return null;
+        }
+
         public bool AnyTouched()
         {
             return _touchCollection.Count > 0;

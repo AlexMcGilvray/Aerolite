@@ -13,8 +13,7 @@ namespace Aerolite.Components
         private float positionX, positionY;
         private float orientation;
         private float scaleX, scaleY;
-        public Vector2 RotationCenter { get; set; }
-
+        public Vector2 RotationCenter { get; set; } //todo : warn if set outside of the 0-1.0f range
 
         public AeTransform()
         {

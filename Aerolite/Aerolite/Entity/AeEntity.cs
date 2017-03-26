@@ -24,7 +24,6 @@ namespace Aerolite.Entity
 
         protected AeEngine Engine { get; private set; }
 
-        
         public AeEntity()
         {
             Engine = AeEngine.Singleton();
@@ -39,6 +38,18 @@ namespace Aerolite.Entity
         {
             component.Owner = this;
             Components.Add(component);
+        }
+        
+        //gets the first component of this type found if any exist
+        public T GetComponent<T>() where T : AeComponent
+        {
+            throw new NotImplementedException();
+        }
+
+        //returns all components of the generic type if any exist
+        public List<T> GetComponents<T>() where T : AeComponent
+        {
+            throw new NotImplementedException();
         }
 
         public void AddChild(IAeEntity entity)

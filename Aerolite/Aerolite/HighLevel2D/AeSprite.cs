@@ -10,6 +10,51 @@ using System.Threading.Tasks;
 
 namespace Aerolite.HighLevel2D
 {
+    public class AeSpriteDebugVizualizer : AeComponent
+    {
+        private AeSprite _sprite;
+        public AeColor DebugColor { get; private set; }
+
+        public AeSpriteDebugVizualizer(AeSprite sprite)
+        {
+            _sprite = sprite;
+            DebugColor = new AeColor(Color.Red);
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch batch)
+        {
+            base.Draw(gameTime, batch);
+            Texture2D fill = Engine.TextureManager.GetFillTexture();
+
+            Rectangle rect;
+            rect.X = (int)_sprite.Transform.X;
+            rect.Y = (int)_sprite.Transform.Y;
+            rect.Width = (int)_sprite.SizeX;
+            rect.Height = 1;
+            batch.Draw(fill, rect, DebugColor.CurrentColor);
+             
+            rect.X = (int)_sprite.Transform.X;
+            rect.Y = (int)(_sprite.Transform.Y + _sprite.SizeY - 1);
+            rect.Width = (int)_sprite.SizeX;
+            rect.Height = 1;
+            batch.Draw(fill, rect, DebugColor.CurrentColor);
+
+            rect.X = (int)_sprite.Transform.X;
+            rect.Y = (int)_sprite.Transform.Y;
+            rect.Width = 1;
+            rect.Height = (int)_sprite.SizeY;
+            batch.Draw(fill, rect, DebugColor.CurrentColor);
+
+            rect.X = (int)(_sprite.Transform.X + _sprite.SizeX);
+            rect.Y = (int)_sprite.Transform.Y;
+            rect.Width = 1;
+            rect.Height = (int)_sprite.SizeY;
+            batch.Draw(fill, rect, DebugColor.CurrentColor);
+        }
+
+    }
+
+
     public class AeSprite : AeEntity
     {
         public Texture2D Texture { get; private set; }
@@ -37,6 +82,12 @@ namespace Aerolite.HighLevel2D
             }
             AddComponent(Animator);
             AddComponent(RenderColor);
+        }
+
+        public void SetupDebugVizualization()
+        {
+            AeSpriteDebugVizualizer debugViz = new AeSpriteDebugVizualizer(this);
+            AddComponent(debugViz);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)

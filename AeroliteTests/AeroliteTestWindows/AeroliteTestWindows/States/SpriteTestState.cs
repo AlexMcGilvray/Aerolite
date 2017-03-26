@@ -16,6 +16,8 @@ namespace AeroliteTestWindows
         AeText _instructions;
 
         AeSprite _sprite;
+        AeSprite _sprite2;
+
 
         public SpriteTestState()
         {
@@ -27,13 +29,30 @@ namespace AeroliteTestWindows
             AddEntity(_instructions);
 
             _sprite = new AeSprite();
+            _sprite2 = new AeSprite();
 
             _sprite.Animator.Add("idle",new AeAnimation("player_ship_ethervoyager",_sprite.Animator,new AeAnimationFrame[] { new AeAnimationFrame(0, 0, 64, 64, 100) }));
             _sprite.Transform.X = 50;
             _sprite.Transform.Y = 50;
+            _sprite.SizeX = 64;
+            _sprite.SizeY = 64;
+
             _sprite.Transform.SetupDebugVizualization();
+            _sprite.SetupDebugVizualization();
+
+            _sprite2.Animator.Add("idle", new AeAnimation("player_ship_ethervoyager", _sprite2.Animator, new AeAnimationFrame[] { new AeAnimationFrame(0, 0, 64, 64, 100) }));
+            _sprite2.Transform.X = 150;
+            _sprite2.Transform.Y = 150;
+            _sprite2.SizeX = 64;
+            _sprite2.SizeY = 64;
+            _sprite2.Transform.RotationCenter = new Vector2(0.5f, 0.5f);
+            _sprite2.Transform.SetupDebugVizualization();
+            _sprite2.SetupDebugVizualization();
+
 
             AddEntity(_sprite);
+            AddEntity(_sprite2);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -65,6 +84,33 @@ namespace AeroliteTestWindows
             else if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.Q))
             {
                 _sprite.Transform.Orientation += 0.001f * gameTime.ElapsedGameTime.Milliseconds;
+            }
+
+            if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.Left))
+            {
+                _sprite2.Transform.X -= 0.1f * gameTime.ElapsedGameTime.Milliseconds;
+            }
+            else if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.Right))
+            {
+                _sprite2.Transform.X += 0.1f * gameTime.ElapsedGameTime.Milliseconds;
+            }
+
+            if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.Up))
+            {
+                _sprite2.Transform.Y -= 0.1f * gameTime.ElapsedGameTime.Milliseconds;
+            }
+            else if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.Down))
+            {
+                _sprite2.Transform.Y += 0.1f * gameTime.ElapsedGameTime.Milliseconds;
+            }
+
+            if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.RightControl))
+            {
+                _sprite2.Transform.Orientation -= 0.001f * gameTime.ElapsedGameTime.Milliseconds;
+            }
+            else if (Input.Keyboard.Down(Microsoft.Xna.Framework.Input.Keys.RightAlt))
+            {
+                _sprite2.Transform.Orientation += 0.001f * gameTime.ElapsedGameTime.Milliseconds;
             }
         }
 

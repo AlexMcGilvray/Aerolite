@@ -11,8 +11,8 @@ namespace Aerolite.Components
 {
     public class AeTransformDebugVizualizer : AeComponent
     {
-        public AeColor HorizontalCrossColor { get; set; }
-        public AeColor VerticalCrossColor { get; set; }
+        public AeColor HorizontalCrossColor { get; private set; }
+        public AeColor VerticalCrossColor { get; private set; }
         public int Size { get; set; } = 19;
         public AeTransform Transform { get; private set; }
 

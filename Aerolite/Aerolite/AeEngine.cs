@@ -20,6 +20,7 @@ namespace Aerolite
         public AeGraphics Graphics;
         public AeInput Input;
         public AeRandom Random;
+        public AeIDebugResources DebugResources { get; set; }
 
         private void InitSubsystems()
         {
@@ -48,6 +49,8 @@ namespace Aerolite
             TextureManager = new AeTextureManager(GameReference);
 
             StateManager = new AeStateManager();
+
+
         }
 
         #region Singleton 

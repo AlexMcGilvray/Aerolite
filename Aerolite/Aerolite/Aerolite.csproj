@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -61,6 +64,7 @@
     <Compile Include="Interfaces\IAeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AeGame.cs" />
+    <Compile Include="Subsystems\AeIDebugResources.cs" />
     <Compile Include="Subsystems\AeState.cs" />
     <Compile Include="Subsystems\AeStateManager.cs" />
     <Compile Include="Subsystems\AeTextureManager.cs" />

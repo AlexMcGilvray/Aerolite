@@ -12,7 +12,7 @@ namespace Aerolite
     public class AeText : AeEntity
     {
         private string _text;
-        private SpriteFont _font;
+        public SpriteFont Font { get; private set; }
 
         public string Text
         {
@@ -30,7 +30,7 @@ namespace Aerolite
             }
             else
             {
-                _font = font;
+                Font = font;
             }
         }
 
@@ -45,7 +45,7 @@ namespace Aerolite
             //TODO add support for color (interpolaters too!)
             Vector2 pos = Transform.Position;
 
-            batch.DrawString(_font, _text, Transform.Position, Color.White,Transform.Orientation,Vector2.Zero,Transform.ScaleX,SpriteEffects.None,0.0f);
+            batch.DrawString(Font, _text, Transform.Position, Color.White,Transform.Orientation,Vector2.Zero,Transform.ScaleX,SpriteEffects.None,0.0f);
         }
     }
 }

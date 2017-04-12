@@ -14,11 +14,16 @@ namespace Aerolite.HighLevel2D
     {
         private AeSprite _sprite;
         public AeColor DebugColor { get; private set; }
+        private AeText _debugTransformText;
 
         public AeSpriteDebugVizualizer(AeSprite sprite)
         {
             _sprite = sprite;
             DebugColor = new AeColor(Color.Red);
+
+
+            // we need to make some kind of resource injection interface to pass into the engine :(
+            _debugTransformText = new AeText("debugTransform",Engine.DebugResources.DebugFont);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
@@ -50,6 +55,12 @@ namespace Aerolite.HighLevel2D
             rect.Width = 1;
             rect.Height = (int)_sprite.SizeY;
             batch.Draw(fill, rect, DebugColor.CurrentColor);
+
+            _debugTransformText.Text = "x : " + Math.Floor(_sprite.Transform.X) + " y : " + Math.Floor(_sprite.Transform.Y);
+            _debugTransformText.Transform.X = _sprite.Transform.X;
+            _debugTransformText.Transform.Y = _sprite.Transform.Y - _debugTransformText.Font.LineSpacing;
+
+            _debugTransformText.Draw(gameTime, batch);
         }
 
     }

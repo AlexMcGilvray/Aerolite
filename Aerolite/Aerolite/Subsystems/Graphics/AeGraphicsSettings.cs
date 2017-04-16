@@ -89,12 +89,13 @@ namespace Aerolite.Subsystems.Graphics
         {
             GameResolutionWidth = width;
             GameResolutionHeight = height;
-
             CompareGameToScreenResolution();
             foreach (OnGameResolutionChange cb in gameResolutionChangeCallbacks)
             {
                 cb();
             }
+            Valid = false;
+
         }
 
         public bool FullScreen

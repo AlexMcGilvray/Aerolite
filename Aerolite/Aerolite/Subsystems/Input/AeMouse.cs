@@ -36,7 +36,7 @@ namespace Aerolite.Subsystems.Input
             _mouseState = Mouse.GetState();
 
             _mouseData.X = (int)(_mouseState.X * (_graphics.GraphicsSettings.GameResolutionWidth / ((float)_graphics.GraphicsSettings.ScreenResolutionWidth)));
-            _mouseData.Y = (int)(_mouseState.Y * (_graphics.GraphicsSettings.GameResolutionHeight/ ((float)_graphics.GraphicsSettings.ScreenResolutionHeight)));
+            _mouseData.Y = (int)(_mouseState.Y * (_graphics.GraphicsSettings.GameResolutionHeight / ((float)_graphics.GraphicsSettings.ScreenResolutionHeight)));
         }
 
         private MouseState State { get { return _mouseState; } }
@@ -53,10 +53,7 @@ namespace Aerolite.Subsystems.Input
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
         }
 
@@ -68,10 +65,7 @@ namespace Aerolite.Subsystems.Input
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
         }
 
@@ -83,10 +77,31 @@ namespace Aerolite.Subsystems.Input
                 {
                     return true;
                 }
-                else
+                return false;
+            }
+        }
+
+        public bool MouseWheelScrolledUp
+        {
+            get
+            {
+                if (_mouseState.ScrollWheelValue - _previousMouseState.ScrollWheelValue < 0)
                 {
-                    return false;
+                    return true;
                 }
+                return false;
+            }
+        }
+
+        public bool MouseWheelScrolledDown
+        {
+            get
+            {
+                if (_mouseState.ScrollWheelValue - _previousMouseState.ScrollWheelValue > 0)
+                {
+                    return true;
+                }
+                return false;
             }
         }
     }

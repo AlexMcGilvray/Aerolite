@@ -28,7 +28,7 @@ namespace Aerolite.Subsystems.Graphics
                 0,
                 RenderTargetUsage.DiscardContents);
 
-            _graphics.GraphicsSettings.AddScreenResolutionChangeCallback(
+            _graphics.GraphicsSettings.AddGameResolutionChangeCallback(
                delegate ()
                {
                    _finalPassTarget = new RenderTarget2D(

@@ -16,13 +16,11 @@ namespace AeroliteTestWindows
         public EntryState()
         {
             var resources = TestGame.Resources;
-
             _instructions = new AeText("press space to go to spritetest", resources.FontGame);
             _instructions.Transform.X = 50;
             _instructions.Transform.Y = 50;
             AddEntity(_instructions);
         }
-
 
         public override void Update(GameTime gameTime)
         {

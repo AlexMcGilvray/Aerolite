@@ -29,6 +29,7 @@ namespace Aerolite.HighLevel2D
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             base.Draw(gameTime, batch);
+#if DEBUG
             Texture2D fill = Engine.TextureManager.GetFillTexture();
 
             Rectangle rect;
@@ -61,6 +62,7 @@ namespace Aerolite.HighLevel2D
             _debugTransformText.Transform.Y = _sprite.Transform.Y - _debugTransformText.Font.LineSpacing;
 
             _debugTransformText.Draw(gameTime, batch);
+#endif
         }
 
     }

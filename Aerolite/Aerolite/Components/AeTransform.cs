@@ -27,7 +27,7 @@ namespace Aerolite.Components
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             base.Draw(gameTime, batch);
-
+#if DEBUG
             Texture2D fill = Engine.TextureManager.GetFillTexture();
             Rectangle rect;
             rect.X = (int)Transform.X - Size / 2;
@@ -40,6 +40,7 @@ namespace Aerolite.Components
             rect.Width = 1;
             rect.Height = Size;
             batch.Draw(fill, rect, VerticalCrossColor.CurrentColor);
+#endif
         }
     }
 

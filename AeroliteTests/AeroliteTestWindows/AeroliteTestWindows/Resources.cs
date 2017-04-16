@@ -1,11 +1,6 @@
 ﻿using Aerolite;
 using Aerolite.Subsystems;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AeroliteTestWindows
 {
@@ -25,7 +20,6 @@ namespace AeroliteTestWindows
             }
         }
     }
-
 
     public class Resources
     {

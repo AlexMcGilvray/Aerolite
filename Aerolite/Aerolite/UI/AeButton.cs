@@ -11,9 +11,26 @@ namespace Aerolite.UI
 {
     public class AeButton : AeUIElement
     {
+        public bool FitButtonSizeToText { get; set; } = false;
 
         public Rectangle BoundingBox;
-        public AeText ButtonText { get; private set; }
+        private AeText _buttonTextControl;
+
+        public string Text {
+            get
+            {
+                return _buttonTextControl.Text;
+            }
+            set
+            {
+                _buttonTextControl.Text = value;
+                if (FitButtonSizeToText)
+                {
+                    BoundingBox.Width = _buttonTextControl.TextWidth + 4;
+                    BoundingBox.Height = _buttonTextControl.TextHeight + 4;
+                }
+            }
+        }
 
         public AeColor FillColor { get; private set; } = new AeColor(Color.Black);
         public AeColor OutlineColor { get; private set; } = new AeColor(Color.White);
@@ -31,10 +48,9 @@ namespace Aerolite.UI
             BoundingBox.Height = 24;
             _drawTexture = Engine.TextureManager.GetFillTexture();
 
+            _buttonTextControl = new AeText("test", Engine.DebugResources.DebugFont);
 
-            ButtonText = new AeText("test", Engine.DebugResources.DebugFont);
-
-            AddChild(ButtonText);
+            AddChild(_buttonTextControl);
         }
 
         public void SetOnClickCallback(Action onClick)
@@ -47,11 +63,11 @@ namespace Aerolite.UI
             base.Update(gameTime);
             BoundingBox.X = (int)Transform.X;
             BoundingBox.Y = (int)Transform.Y;
-            int verticalOffset = (BoundingBox.Height - ButtonText.TextHeight) / 2;
-            int horizontalOffset = (BoundingBox.Width - ButtonText.TextWidth) / 2;
+            int verticalOffset = (BoundingBox.Height - _buttonTextControl.TextHeight) / 2;
+            int horizontalOffset = (BoundingBox.Width - _buttonTextControl.TextWidth) / 2;
 
-            ButtonText.Transform.X = Transform.X + horizontalOffset ;
-            ButtonText.Transform.Y = Transform.Y + verticalOffset;
+            _buttonTextControl.Transform.X = Transform.X + horizontalOffset ;
+            _buttonTextControl.Transform.Y = Transform.Y + verticalOffset;
 
             var mouse = Engine.Input.Mouse;
             if (BoundingBox.Contains(mouse.X,mouse.Y) && mouse.LeftClick && _onClick != null)
@@ -92,7 +108,7 @@ namespace Aerolite.UI
             batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
 
 
-            ButtonText.Draw(gameTime, batch);
+            _buttonTextControl.Draw(gameTime, batch);
         }
 
     }

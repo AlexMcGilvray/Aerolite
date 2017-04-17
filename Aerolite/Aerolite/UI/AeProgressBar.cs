@@ -32,8 +32,6 @@ namespace Aerolite.UI
             }
         }
 
-        public int Width { get; set; }
-        public int Height { get; set; }
         public int BorderSize { get; set; } = 2;
         public Color BackgroundColor { get; set; }
         public Color FillColor { get; set; }
@@ -48,9 +46,8 @@ namespace Aerolite.UI
         public AeProgressBar(int width, int height, int borderWidth = 2, int borderHeight = 2)
         {
             _drawTexture = Engine.TextureManager.CreateFilledRectangle(1, 1, Color.White);
-            Width = width;
-            Height = height;
-            
+            BoundingBox.Width = width;
+            BoundingBox.Height = height;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
@@ -60,8 +57,8 @@ namespace Aerolite.UI
 
             destinationRect.X = (int)Transform.X;
             destinationRect.Y = (int)Transform.Y;
-            destinationRect.Width = Width;
-            destinationRect.Height = Height;
+            destinationRect.Width = BoundingBox.Width;
+            destinationRect.Height = BoundingBox.Height;
             batch.Draw(_drawTexture, destinationRect, BackgroundColor);
 
             switch (BarType)
@@ -69,15 +66,15 @@ namespace Aerolite.UI
                 case AeProgressBarType.Horizontal:
                     destinationRect.X = (int)Transform.X;
                     destinationRect.Y = (int)Transform.Y;
-                    destinationRect.Width = (int)(Width * CurrentValue);
-                    destinationRect.Height = Height;
+                    destinationRect.Width = (int)(BoundingBox.Width * CurrentValue);
+                    destinationRect.Height = BoundingBox.Height;
                     batch.Draw(_drawTexture, destinationRect, FillColor);
                     break;
                 case AeProgressBarType.Vertical:
                     destinationRect.X = (int)Transform.X;
-                    destinationRect.Y = (int)Transform.Y + Height - (int)(Height * CurrentValue);
-                    destinationRect.Width = Width;
-                    destinationRect.Height = (int)(Height * CurrentValue);
+                    destinationRect.Y = (int)Transform.Y + BoundingBox.Height - (int)(BoundingBox.Height * CurrentValue);
+                    destinationRect.Width = BoundingBox.Width;
+                    destinationRect.Height = (int)(BoundingBox.Height * CurrentValue);
                     batch.Draw(_drawTexture, destinationRect, FillColor);
                     break;
                 default:
@@ -86,26 +83,26 @@ namespace Aerolite.UI
 
             destinationRect.X = (int)Transform.X;
             destinationRect.Y = (int)Transform.Y;
-            destinationRect.Width = Width;
+            destinationRect.Width = BoundingBox.Width;
             destinationRect.Height = BorderSize;
             batch.Draw(_drawTexture, destinationRect, BorderColor);
 
             destinationRect.X = (int)Transform.X;
-            destinationRect.Y = (int)Transform.Y + Height - BorderSize;
-            destinationRect.Width = Width;
+            destinationRect.Y = (int)Transform.Y + BoundingBox.Height - BorderSize;
+            destinationRect.Width = BoundingBox.Width;
             destinationRect.Height = BorderSize;
             batch.Draw(_drawTexture, destinationRect, BorderColor);
 
             destinationRect.X = (int)Transform.X;
             destinationRect.Y = (int)Transform.Y;
             destinationRect.Width = BorderSize;
-            destinationRect.Height = Height;
+            destinationRect.Height = BoundingBox.Height;
             batch.Draw(_drawTexture, destinationRect, BorderColor);
 
-            destinationRect.X = (int)Transform.X + Width - BorderSize;
+            destinationRect.X = (int)Transform.X + BoundingBox.Width - BorderSize;
             destinationRect.Y = (int)Transform.Y;
             destinationRect.Width = BorderSize;
-            destinationRect.Height = Height;
+            destinationRect.Height = BoundingBox.Height;
             batch.Draw(_drawTexture, destinationRect, BorderColor);
         }
     }

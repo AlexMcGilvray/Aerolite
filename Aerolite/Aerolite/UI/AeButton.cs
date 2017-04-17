@@ -13,7 +13,6 @@ namespace Aerolite.UI
     {
         public bool FitButtonSizeToText { get; set; } = false;
 
-        public Rectangle BoundingBox;
         private AeText _buttonTextControl;
 
         public string Text {

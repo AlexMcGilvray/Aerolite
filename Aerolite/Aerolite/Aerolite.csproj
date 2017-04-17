@@ -77,6 +77,7 @@
     <Compile Include="Subsystems\Input\AeMouse.cs" />
     <Compile Include="Subsystems\Input\AeTouch.cs" />
     <Compile Include="UI\AeButton.cs" />
+    <Compile Include="UI\AeGroupPanel.cs" />
     <Compile Include="UI\AeProgressBar.cs" />
     <Compile Include="UI\AeUIElement.cs" />
     <Compile Include="Util\AeMath.cs" />

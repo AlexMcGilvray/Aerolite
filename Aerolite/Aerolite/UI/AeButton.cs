@@ -25,15 +25,19 @@ namespace Aerolite.UI
                 _buttonTextControl.Text = value;
                 if (FitButtonSizeToText)
                 {
-                    BoundingBox.Width = _buttonTextControl.TextWidth + 4;
-                    BoundingBox.Height = _buttonTextControl.TextHeight + 4;
+                    BoundingBox.Width = _buttonTextControl.TextWidth ;
+                    BoundingBox.Height = _buttonTextControl.TextHeight ;
                 }
             }
         }
 
         public AeColor FillColor { get; private set; } = new AeColor(Color.Black);
         public AeColor OutlineColor { get; private set; } = new AeColor(Color.White);
+        public AeColor HoverFillColor { get; private set; } = new AeColor(Color.DarkGray);
+
         public int BorderSize { get; set; } = 1;
+
+        public bool IsMouseHovering { get; private set; }
 
         Texture2D _drawTexture;
 
@@ -73,6 +77,17 @@ namespace Aerolite.UI
             {
                 _onClick();
             }
+            else
+            {
+                if (BoundingBox.Contains(mouse.X, mouse.Y))
+                {
+                    IsMouseHovering = true;
+                }
+                else
+                {
+                    IsMouseHovering = false;
+                }
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
@@ -80,7 +95,9 @@ namespace Aerolite.UI
             base.Draw(gameTime, batch);
             Rectangle destinationRect = BoundingBox;
 
-            batch.Draw(_drawTexture, BoundingBox, FillColor.CurrentColor);
+            Color fillColor = IsMouseHovering ? HoverFillColor.CurrentColor : FillColor.CurrentColor;
+
+            batch.Draw(_drawTexture, BoundingBox, fillColor);
 
             destinationRect.X = (int)Transform.X;
             destinationRect.Y = (int)Transform.Y;

@@ -22,6 +22,8 @@ namespace Aerolite.Subsystems
 
         private bool _hasInited = false;
 
+        private List<IAeEntity> _entitiesToAdd = new List<IAeEntity>();
+
 
         public AeState() : base()
         {
@@ -32,7 +34,7 @@ namespace Aerolite.Subsystems
 
         protected void AddEntity(IAeEntity entity)
         {
-            _entities.Add(entity);
+            _entitiesToAdd.Add(entity);
         }
 
         public virtual void Update(GameTime gameTime)
@@ -41,6 +43,14 @@ namespace Aerolite.Subsystems
             {
                 Init();
                 _hasInited = true;
+            }
+            if (_entitiesToAdd.Count > 0)
+            {
+                foreach (var entity in _entitiesToAdd)
+                {
+                    _entities.Add(entity);
+                }
+                _entitiesToAdd.Clear();
             }
             Camera.Update(gameTime);
             foreach (var ent in _entities.Entities)

@@ -1,11 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aerolite.Components;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Aerolite.Components;
+using System;
 
 namespace Aerolite.UI
 {
@@ -35,6 +31,8 @@ namespace Aerolite.UI
         public AeColor OutlineColor { get; private set; } = new AeColor(Color.White);
         public AeColor HoverFillColor { get; private set; } = new AeColor(Color.DarkGray);
 
+        public Texture2D FillTexture { get; private set; }
+
         public int BorderSize { get; set; } = 1;
 
         public bool IsMouseHovering { get; private set; }
@@ -54,6 +52,16 @@ namespace Aerolite.UI
             _buttonTextControl = new AeText("test", Engine.DebugResources.DebugFont);
 
             AddChild(_buttonTextControl);
+        }
+
+        public void SetFillTexture(Texture2D texture,bool adjustSizeToFitImage = false)
+        {
+            FillTexture = texture;
+            if (adjustSizeToFitImage)
+            {
+                BoundingBox.Width = FillTexture.Width;
+                BoundingBox.Height = FillTexture.Height;
+            }
         }
 
         public void SetOnClickCallback(Action onClick)
@@ -95,9 +103,23 @@ namespace Aerolite.UI
             base.Draw(gameTime, batch);
             Rectangle destinationRect = BoundingBox;
 
-            Color fillColor = IsMouseHovering ? HoverFillColor.CurrentColor : FillColor.CurrentColor;
-
-            batch.Draw(_drawTexture, BoundingBox, fillColor);
+            if (FillTexture != null)
+            {
+                if (IsMouseHovering)
+                {
+                    //TODO Make this not hideous
+                    batch.Draw(FillTexture, BoundingBox, Color.Red);
+                }
+                else
+                {
+                    batch.Draw(FillTexture, BoundingBox, Color.White);
+                }
+            }
+            else
+            {
+                Color fillColor = IsMouseHovering ? HoverFillColor.CurrentColor : FillColor.CurrentColor;
+                batch.Draw(_drawTexture, BoundingBox, fillColor);
+            }
 
             destinationRect.X = (int)Transform.X;
             destinationRect.Y = (int)Transform.Y;
@@ -123,9 +145,7 @@ namespace Aerolite.UI
             destinationRect.Height = BoundingBox.Height;
             batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
 
-
             _buttonTextControl.Draw(gameTime, batch);
         }
-
     }
 }

@@ -12,7 +12,7 @@ namespace Aerolite.UI
     public class AeButton : AeUIElement
     {
         public bool FitButtonSizeToText { get; set; } = false;
-
+        public int FitButtonSizePadding { get; set; } = 20;
         private AeText _buttonTextControl;
 
         public string Text {
@@ -25,8 +25,8 @@ namespace Aerolite.UI
                 _buttonTextControl.Text = value;
                 if (FitButtonSizeToText)
                 {
-                    BoundingBox.Width = _buttonTextControl.TextWidth ;
-                    BoundingBox.Height = _buttonTextControl.TextHeight ;
+                    BoundingBox.Width = _buttonTextControl.TextWidth + FitButtonSizePadding;
+                    BoundingBox.Height = _buttonTextControl.TextHeight + FitButtonSizePadding;
                 }
             }
         }

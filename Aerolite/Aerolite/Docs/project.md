@@ -3,8 +3,17 @@
 
 ## Todo
 
+* Status bar UI element. 
+* Add image button support to AeButton
+* Add tooltip support to AeUIElements
+* Add touch support to AeButton
 
 ## Done
+
+*2017 April 17*
+
+* Added AeButton for a GUI button. 
+* General UI improvements
 
 *2017 Feb 21*
 
@@ -29,3 +38,10 @@
 * Make the state manager act as a stack then move the debug stuff and the HUD into their own states layered on 
 top of the game state.
 * Update mouse input to be able to do screen-to-world
+
+## Log
+
+*2017 April 17*
+
+Been working a lot on EtherStrike and decided to make a level editor. As such, the main point of focus right now is on getting the UI portion of the engine improved so I can have a level editor. 
+

@@ -30,10 +30,13 @@ namespace Aerolite.UI
         public AeColor FillColor { get; private set; } = new AeColor(Color.Black);
         public AeColor OutlineColor { get; private set; } = new AeColor(Color.White);
         public AeColor HoverFillColor { get; private set; } = new AeColor(Color.DarkGray);
+        public AeColor HoverBorderFillColor { get; private set; } = new AeColor(Color.White);
 
         public Texture2D FillTexture { get; private set; }
 
         public int BorderSize { get; set; } = 1;
+        public bool DrawBorder { get; set; } = true;
+        public bool DrawMouseHoverHighlightBorder { get; set; } = true;
 
         public bool IsMouseHovering { get; private set; }
 
@@ -108,7 +111,7 @@ namespace Aerolite.UI
                 if (IsMouseHovering)
                 {
                     //TODO Make this not hideous
-                    batch.Draw(FillTexture, BoundingBox, Color.Red);
+                    batch.Draw(FillTexture, BoundingBox, Color.Gray);
                 }
                 else
                 {
@@ -121,29 +124,58 @@ namespace Aerolite.UI
                 batch.Draw(_drawTexture, BoundingBox, fillColor);
             }
 
-            destinationRect.X = (int)Transform.X;
-            destinationRect.Y = (int)Transform.Y;
-            destinationRect.Width = BoundingBox.Width;
-            destinationRect.Height = BorderSize;
-            batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
+            if (IsMouseHovering && DrawMouseHoverHighlightBorder)
+            {
+                destinationRect.X = (int)Transform.X;
+                destinationRect.Y = (int)Transform.Y;
+                destinationRect.Width = BoundingBox.Width;
+                destinationRect.Height = BorderSize;
+                batch.Draw(_drawTexture, destinationRect, HoverBorderFillColor.CurrentColor);
 
-            destinationRect.X = (int)Transform.X;
-            destinationRect.Y = (int)Transform.Y + BoundingBox.Height - BorderSize;
-            destinationRect.Width = BoundingBox.Width;
-            destinationRect.Height = BorderSize;
-            batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
+                destinationRect.X = (int)Transform.X;
+                destinationRect.Y = (int)Transform.Y + BoundingBox.Height - BorderSize;
+                destinationRect.Width = BoundingBox.Width;
+                destinationRect.Height = BorderSize;
+                batch.Draw(_drawTexture, destinationRect, HoverBorderFillColor.CurrentColor);
 
-            destinationRect.X = (int)Transform.X;
-            destinationRect.Y = (int)Transform.Y;
-            destinationRect.Width = BorderSize;
-            destinationRect.Height = BoundingBox.Height;
-            batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
+                destinationRect.X = (int)Transform.X;
+                destinationRect.Y = (int)Transform.Y;
+                destinationRect.Width = BorderSize;
+                destinationRect.Height = BoundingBox.Height;
+                batch.Draw(_drawTexture, destinationRect, HoverBorderFillColor.CurrentColor);
 
-            destinationRect.X = (int)Transform.X + BoundingBox.Width - BorderSize;
-            destinationRect.Y = (int)Transform.Y;
-            destinationRect.Width = BorderSize;
-            destinationRect.Height = BoundingBox.Height;
-            batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
+                destinationRect.X = (int)Transform.X + BoundingBox.Width - BorderSize;
+                destinationRect.Y = (int)Transform.Y;
+                destinationRect.Width = BorderSize;
+                destinationRect.Height = BoundingBox.Height;
+                batch.Draw(_drawTexture, destinationRect, HoverBorderFillColor.CurrentColor);
+            }
+            else if (DrawBorder)
+            {
+                destinationRect.X = (int)Transform.X;
+                destinationRect.Y = (int)Transform.Y;
+                destinationRect.Width = BoundingBox.Width;
+                destinationRect.Height = BorderSize;
+                batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
+
+                destinationRect.X = (int)Transform.X;
+                destinationRect.Y = (int)Transform.Y + BoundingBox.Height - BorderSize;
+                destinationRect.Width = BoundingBox.Width;
+                destinationRect.Height = BorderSize;
+                batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
+
+                destinationRect.X = (int)Transform.X;
+                destinationRect.Y = (int)Transform.Y;
+                destinationRect.Width = BorderSize;
+                destinationRect.Height = BoundingBox.Height;
+                batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
+
+                destinationRect.X = (int)Transform.X + BoundingBox.Width - BorderSize;
+                destinationRect.Y = (int)Transform.Y;
+                destinationRect.Width = BorderSize;
+                destinationRect.Height = BoundingBox.Height;
+                batch.Draw(_drawTexture, destinationRect, OutlineColor.CurrentColor);
+            }
 
             _buttonTextControl.Draw(gameTime, batch);
         }

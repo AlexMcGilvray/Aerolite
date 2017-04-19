@@ -23,6 +23,7 @@ namespace Aerolite.Subsystems
         private bool _hasInited = false;
 
         private List<IAeEntity> _entitiesToAdd = new List<IAeEntity>();
+        private List<IAeEntity> _entitiesToRemove = new List<IAeEntity>();
 
 
         public AeState() : base()
@@ -37,12 +38,25 @@ namespace Aerolite.Subsystems
             _entitiesToAdd.Add(entity);
         }
 
+        public void RemoveEntity(IAeEntity entity)
+        {
+            _entitiesToRemove.Add(entity);
+        }
+
         public virtual void Update(GameTime gameTime)
         {
             if (!_hasInited)
             {
                 Init();
                 _hasInited = true;
+            }
+            if (_entitiesToRemove.Count > 0)
+            {
+                foreach (var entity in _entitiesToRemove)
+                {
+                    _entities.Remove(entity);
+                }
+                _entitiesToRemove.Clear();
             }
             if (_entitiesToAdd.Count > 0)
             {

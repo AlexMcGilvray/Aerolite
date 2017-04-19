@@ -4,11 +4,16 @@
 ## Todo
 
 * Status bar UI element. 
-* Add image button support to AeButton
 * Add tooltip support to AeUIElements
 * Add touch support to AeButton
 
 ## Done
+
+*2017 April 18*
+
+* Add image button support to AeButton
+* Added ability to remove entities from states
+* Fancied up AeButton in general. Has better highlighting with optional border highlighting
 
 *2017 April 17*
 

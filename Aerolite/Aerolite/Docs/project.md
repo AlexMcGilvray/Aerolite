@@ -6,6 +6,7 @@
 * Status bar UI element. 
 * Add tooltip support to AeUIElements
 * Add touch support to AeButton
+* When zooming out the camera, the translation should also be scaled so you zoom on the point your mouse is over rather than the worldspace origin
 
 ## Done
 

@@ -86,6 +86,9 @@ namespace Aerolite.UI
                     element.BoundingBox.Height = largestHeight;
                 }
             }
+
+            BoundingBox.Width = largestWidth;
+            BoundingBox.Height = largestHeight;
         }
 
         public override void Update(GameTime gameTime)

@@ -18,7 +18,7 @@ namespace Aerolite.Components
         public int FrameHeight { get; private set; }
         public int Duration { get; private set; }
 
-        public AeAnimationFrame(int x, int y, int width, int height, int duration)
+        public AeAnimationFrame(int x, int y, int width, int height, int duration = 0)
         {
             FrameX = x;
             FrameY = y;

@@ -79,6 +79,8 @@ namespace Aerolite.HighLevel2D
 
         public AeAnimator Animator { get; private set; }
         public AeColor RenderColor { get; set; }
+        public bool Visible { get; set; } = true;
+
 
         public AeSprite(string texturePath = null) : base()
         {
@@ -105,8 +107,11 @@ namespace Aerolite.HighLevel2D
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
-            Animator.RenderColor = RenderColor;
-            base.Draw(gameTime, batch);
+            if (Visible)
+            {
+                Animator.RenderColor = RenderColor;
+                base.Draw(gameTime, batch);
+            }
         }
     }
 }

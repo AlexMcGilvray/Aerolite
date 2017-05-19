@@ -1,23 +1,18 @@
-﻿using Aerolite.Components;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Aerolite.Components
 {
-    public class AeTransformDebugVizualizer : AeComponent
+    public class AeTransformVizualizer : AeComponent
     {
         public AeColor HorizontalCrossColor { get; private set; }
         public AeColor VerticalCrossColor { get; private set; }
         public int Size { get; set; } = 19;
         public AeTransform Transform { get; private set; }
+        public bool Visible { get; set; } = true;
 
-        public AeTransformDebugVizualizer(AeTransform tranform)
-            :base()
+        public AeTransformVizualizer(AeTransform tranform)
+            : base()
         {
             Transform = tranform;
             HorizontalCrossColor = new AeColor(Color.Red);
@@ -27,20 +22,21 @@ namespace Aerolite.Components
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             base.Draw(gameTime, batch);
-#if DEBUG
-            Texture2D fill = Engine.TextureManager.GetFillTexture();
-            Rectangle rect;
-            rect.X = (int)Transform.X - Size / 2;
-            rect.Y = (int)Transform.Y;
-            rect.Width = Size;
-            rect.Height = 1;
-            batch.Draw(fill, rect, HorizontalCrossColor.CurrentColor);
-            rect.X = (int)Transform.X;
-            rect.Y = (int)Transform.Y - Size / 2;
-            rect.Width = 1;
-            rect.Height = Size;
-            batch.Draw(fill, rect, VerticalCrossColor.CurrentColor);
-#endif
+            if (Visible)
+            {
+                Texture2D fill = Engine.TextureManager.GetFillTexture();
+                Rectangle rect;
+                rect.X = (int)Transform.X - Size / 2;
+                rect.Y = (int)Transform.Y;
+                rect.Width = Size;
+                rect.Height = 1;
+                batch.Draw(fill, rect, HorizontalCrossColor.CurrentColor);
+                rect.X = (int)Transform.X;
+                rect.Y = (int)Transform.Y - Size / 2;
+                rect.Width = 1;
+                rect.Height = Size;
+                batch.Draw(fill, rect, VerticalCrossColor.CurrentColor);
+            }
         }
     }
 
@@ -60,7 +56,7 @@ namespace Aerolite.Components
 
         public void SetupDebugVizualization()
         {
-            AeTransformDebugVizualizer debugViz = new AeTransformDebugVizualizer(this);
+            AeTransformVizualizer debugViz = new AeTransformVizualizer(this);
             AddComponent(debugViz);
         }
 

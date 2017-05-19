@@ -137,7 +137,6 @@ namespace Aerolite.Components
             destinationRectangle.X += (int)rotationCenter.X;
             destinationRectangle.Y += (int)rotationCenter.Y;
 
-            //TODO change this to use a color component
             batch.Draw(
                 Texture, 
                 destinationRectangle, 

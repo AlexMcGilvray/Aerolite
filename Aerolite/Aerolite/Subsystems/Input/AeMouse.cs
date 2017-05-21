@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Aerolite.Subsystems.Input
 {
-    public class AeMouseData
+    public struct AeMouseData
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -19,7 +19,7 @@ namespace Aerolite.Subsystems.Input
         private MouseState _mouseState;
         private MouseState _previousMouseState;
 
-        private AeMouseData _mouseData = new AeMouseData();
+        private AeMouseData _mouseData;
 
         private AeGraphics _graphics;
 
@@ -44,6 +44,7 @@ namespace Aerolite.Subsystems.Input
         public int Y { get { return _mouseData.Y; } }
         public int XDelta { get { return _mouseState.X - _previousMouseState.X; } }
         public int YDelta { get { return _mouseState.Y - _previousMouseState.Y; } }
+        public AeMouseData MouseData { get { return _mouseData; } }
 
         public bool LeftClick
         {

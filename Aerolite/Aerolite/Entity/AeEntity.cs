@@ -56,6 +56,11 @@ namespace Aerolite.Entity
         {
             Entities.Add(entity);
         }
+
+        public void RemoveChild(IAeEntity entity)
+        {
+            Entities.Remove(entity);
+        }
         //TODO switch to update/doupdate pattern so alive bool will work
         public virtual void Update(GameTime gameTime)
         {

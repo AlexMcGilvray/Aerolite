@@ -22,8 +22,15 @@ namespace Aerolite.UI
             var mouse = Engine.Input.Mouse;
             if (BoundingBox.Contains(mouse.X,mouse.Y))
             {
-                OnMouseHover(mouse.MouseData);
-                _mouseHovering = true;
+                if (mouse.LeftClick)
+                {
+                    OnMouseClick(mouse.MouseData);
+                }
+                else
+                {
+                    OnMouseHover(mouse.MouseData);
+                    _mouseHovering = true;
+                }
             }
             else
             {
@@ -37,8 +44,6 @@ namespace Aerolite.UI
 
         protected virtual void OnMouseHover(AeMouseData mousePosition)  { }
         protected virtual void OnMouseExit(AeMouseData mousePosition) { }
-
-
-
+        protected virtual void OnMouseClick(AeMouseData mousePosition) { }
     }
 }

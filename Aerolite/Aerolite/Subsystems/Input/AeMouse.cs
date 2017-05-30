@@ -1,4 +1,5 @@
 ﻿using Aerolite.Subsystems.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,16 @@ namespace Aerolite.Subsystems.Input
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public Vector2 AsVector
+        {
+            get
+            {
+                Vector2 ret;
+                ret.X = X;
+                ret.Y = Y;
+                return ret;
+            }
+        }
     }
 
     public class AeMouse

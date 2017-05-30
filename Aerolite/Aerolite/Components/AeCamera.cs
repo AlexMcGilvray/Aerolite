@@ -48,7 +48,7 @@ namespace Aerolite.Components
         {
             Vector2 convertedCoordinates;
             convertedCoordinates.X = screenCoordinate.X - Transform.X;
-            convertedCoordinates.Y = screenCoordinate.Y - Transform.Y;
+            convertedCoordinates.Y = screenCoordinate.Y + Transform.Y;
             return convertedCoordinates;
         }
 

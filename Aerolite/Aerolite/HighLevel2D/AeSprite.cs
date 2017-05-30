@@ -95,6 +95,7 @@ namespace Aerolite.HighLevel2D
                 animation.AddFrame(frame1);
                 Animator.Add("default",animation);
             }
+            CollisionHull.SetSize((int)SizeX, (int)SizeY);
             AddComponent(Animator);
             AddComponent(RenderColor);
         }

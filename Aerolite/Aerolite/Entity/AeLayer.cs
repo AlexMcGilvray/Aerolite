@@ -16,8 +16,10 @@ namespace Aerolite.Entity
         private List<T> _entities;
 
         public List<T> Entities { get { return _entities; } }
+
+        public AeLayer() : this(InitialLayerSize) { }
         
-        public AeLayer(int initialCollectionSize = InitialLayerSize)
+        public AeLayer(int initialCollectionSize)
         {
             _entities = new List<T>(InitialLayerSize);
         }

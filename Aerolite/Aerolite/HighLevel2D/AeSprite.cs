@@ -16,6 +16,8 @@ namespace Aerolite.HighLevel2D
         public AeColor DebugColor { get; private set; }
         private AeText _debugTransformText;
 
+        private AeSpriteDebugVizualizer() { }
+
         public AeSpriteDebugVizualizer(AeSprite sprite)
         {
             _sprite = sprite;
@@ -80,8 +82,7 @@ namespace Aerolite.HighLevel2D
         public AeAnimator Animator { get; private set; }
         public AeColor RenderColor { get; set; }
         public bool Visible { get; set; } = true;
-
-
+        
         public AeSprite(string texturePath = null) : base()
         {
             Animator = new AeAnimator();

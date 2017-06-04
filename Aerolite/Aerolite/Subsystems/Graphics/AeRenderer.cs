@@ -12,6 +12,8 @@ namespace Aerolite.Subsystems.Graphics
     {
         private AeGraphics _graphics;
         private RenderTarget2D _finalPassTarget;
+
+        private Effect _postProcessEffect;
         
         public AeRenderer(AeGraphics graphics)
         {
@@ -38,6 +40,11 @@ namespace Aerolite.Subsystems.Graphics
                });
         }
 
+        public void SetPostProcessEffect(Effect effect)
+        {
+            _postProcessEffect = effect;
+        }
+
         public void Render(GameTime gameTime, AeStateManager stateManager)
         {
             AeGraphicsSettings graphicsSettings = _graphics.GraphicsSettings;
@@ -57,6 +64,12 @@ namespace Aerolite.Subsystems.Graphics
                 graphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
                 graphicsDeviceManager.GraphicsDevice.Clear(graphicsSettings.ClearColorBackBuffer);
                 _graphics.Batch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);
+
+                if (_postProcessEffect != null)
+                {
+                    _postProcessEffect.CurrentTechnique.Passes[0].Apply();
+                }
+
                 switch (graphicsSettings.ScalingMode)
                 {
                     case AeScalingMode.NO_SCALING:

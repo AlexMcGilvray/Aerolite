@@ -8,7 +8,7 @@ namespace Aerolite.Util
 {
     public static class AeUtil
     {
-        public static IEnumerable<T> GetEnumValues<T>(T enumType)
+        public static IEnumerable<T> GetEnumValues<T>()
         {
             if (!typeof(T).IsEnum)
             {

@@ -47,6 +47,11 @@ namespace Aerolite.Components
         private float scaleX, scaleY;
         public Vector2 RotationCenter { get; set; } //todo : warn if set outside of the 0-1.0f range
 
+        /// <summary>
+        /// When set to true, modifcations to the transforms properties have no effect.
+        /// </summary>
+        public bool Lock { get; set; } = false;
+
         public AeTransform()
         {
             scaleX = 1.0f;
@@ -68,17 +73,20 @@ namespace Aerolite.Components
             }
             set
             {
-                positionX = value.X;
-                positionY = value.Y;
+                if (!Lock)
+                {
+                    positionX = value.X;
+                    positionY = value.Y;
+                }
             }
         }
 
-        public float X { get { return positionX; } set { positionX = value; } }
-        public float Y { get { return positionY; } set { positionY = value; } }
+        public float X { get { return positionX; } set { if (!Lock) { positionX = value; } } }
+        public float Y { get { return positionY; } set { if (!Lock) { positionY = value; } } }
 
-        public float Orientation { get { return orientation; } set { orientation = value; } }
+        public float Orientation { get { return orientation; } set { if (!Lock) { orientation = value; } } }
 
-        public float ScaleX { get { return scaleX; } set { scaleX = value; } }
-        public float ScaleY { get { return scaleY; } set { scaleY = value; } }
+        public float ScaleX { get { return scaleX; } set { if (!Lock) { scaleX = value; } } }
+        public float ScaleY { get { return scaleY; } set { if (!Lock) { scaleY = value; } } }
     }
 }

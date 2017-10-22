@@ -179,6 +179,11 @@ namespace Aerolite.Components
             }
         }
 
+        public void ClearCurrentAnimation()
+        {
+            CurrentAnimation = null;
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

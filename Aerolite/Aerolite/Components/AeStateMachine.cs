@@ -52,9 +52,9 @@ namespace Aerolite.Components
         public void ChangeState(T state)
         {
             //TODO this is an error, we're calling the exit function on teh state we're passing in when it should be the current state
-            if (_stateExitFunctions.ContainsKey(state))
+            if (_stateExitFunctions.ContainsKey(CurrentState))
             {
-                _stateExitFunctions[state].Invoke();
+                _stateExitFunctions[CurrentState].Invoke();
             }
             if (_stateEnterFunctions.ContainsKey(state))
             {

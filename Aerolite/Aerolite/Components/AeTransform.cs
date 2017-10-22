@@ -61,8 +61,10 @@ namespace Aerolite.Components
 
         public void SetupDebugVizualization()
         {
+#if DEBUG
             AeTransformVizualizer debugViz = new AeTransformVizualizer(this);
             AddComponent(debugViz);
+#endif
         }
 
         public Vector2 Position

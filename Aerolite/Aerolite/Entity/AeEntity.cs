@@ -24,6 +24,8 @@ namespace Aerolite.Entity
 
         protected AeEngine Engine { get; private set; }
 
+        private bool _isInitialized = false;
+
         public AeEntity()
         {
             Engine = AeEngine.Singleton();
@@ -61,10 +63,18 @@ namespace Aerolite.Entity
         {
             Entities.Remove(entity);
         }
+
+        public virtual void Init() { }
+
         //TODO switch to update/doupdate pattern so alive bool will work
         public virtual void Update(GameTime gameTime)
         {
-            if (Alive)
+            if (!_isInitialized)
+            {
+                _isInitialized = true;
+                Init();
+            }
+                if (Alive)
             {
                 CollisionHull.SetPosition((int)Transform.X, (int)Transform.Y);
                 foreach(var cmp in _privateComponents)
@@ -84,6 +94,7 @@ namespace Aerolite.Entity
 
         public virtual void Draw(GameTime gameTime, SpriteBatch batch)
         {
+            // TODO Shouldn't this be a different bool called Visible? Is there a reason we're using Alive to determine if it's visible?
             if (Alive)
             {
                 foreach (var cmp in _privateComponents)
@@ -100,5 +111,7 @@ namespace Aerolite.Entity
                 }
             }
         }
+
+
     }
 }

@@ -14,9 +14,17 @@ namespace Aerolite.Components
         private Texture2D _debugTexture;
         public bool DebugDraw { get; set; } = false;
 
+        public bool Collidable { get; set; } = true;
+
         public AeAABB()
         {
             _debugTexture = Engine.TextureManager.CreateFilledRectangle(1, 1, Color.Pink);
+        }
+
+        public AeAABB(Rectangle rect)
+        {
+            _debugTexture = Engine.TextureManager.CreateFilledRectangle(1, 1, Color.Pink);
+            _rect = rect;
         }
 
         public int X { get { return _rect.X; } }
@@ -38,6 +46,10 @@ namespace Aerolite.Components
 
         public bool Overlaps(AeAABB otherHull)
         {
+            if (!Collidable || !otherHull.Collidable)
+            {
+                return false;
+            }
             if (this._rect.Intersects(otherHull._rect))
             {
                 return true;

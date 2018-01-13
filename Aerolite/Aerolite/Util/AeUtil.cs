@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Aerolite.Util
 {
@@ -16,5 +15,17 @@ namespace Aerolite.Util
             }
             return Enum.GetValues(typeof(T)).OfType<T>();
         }
+
+
+        //this wont work unless I made 2 aerolite projects (windows/andriod) because it would need the xamarin dll's not the .net
+        //public static XDocument LoadXmlDocument(string path)
+        //{
+        //    XDocument doc;
+        //    using (var stream =
+        //    {
+        //        doc = XDocument.Load(stream);
+        //    }
+        //    return doc;
+        //}
     }
 }

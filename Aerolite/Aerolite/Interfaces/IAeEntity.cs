@@ -12,5 +12,6 @@ namespace Aerolite.Interfaces
     {
         void Update(GameTime gameTime);
         void Draw(GameTime gameTime, SpriteBatch batch);
+        void Init();
     }
 }

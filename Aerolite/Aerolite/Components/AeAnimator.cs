@@ -28,7 +28,15 @@ namespace Aerolite.Components
         }
     }
 
-    public delegate void AeEventOnAnimationComplete(object sender);
+    public delegate void AeEventOnAnimationComplete(AeAnimation sender);
+
+    public class AeLinearAnimationGenerationParams
+    {
+        public int Width { get;  set; }
+        public int Height { get;  set; }
+        public int FrameCount { get;  set; }
+        public int FrameTime { get;  set; }
+    }
 
     public class AeAnimation
     {
@@ -43,6 +51,24 @@ namespace Aerolite.Components
         public bool CompleteAnimation { get; private set; } = false;
 
         public event AeEventOnAnimationComplete OnAnimationComplete;
+
+        public AeAnimation(Texture2D texture, AeAnimator parent, AeLinearAnimationGenerationParams linearAnimGenerationParams)
+        {
+            Texture = texture;
+            Parent = parent;
+
+            int currentX = 0;
+            int width = linearAnimGenerationParams.Width;
+            int height = linearAnimGenerationParams.Height;
+            List<AeAnimationFrame> frames = new List<AeAnimationFrame>();
+            for( int i = 0; i < linearAnimGenerationParams.FrameCount; ++i)
+            {
+                frames.Add(new AeAnimationFrame(currentX, 0, width, height, linearAnimGenerationParams.FrameTime));
+                currentX += width;
+            }
+
+            AddFrames(frames.ToArray());
+        }
 
         public AeAnimation(Texture2D texture, AeAnimator parent, AeAnimationFrame[] frames = null)
         {
@@ -97,9 +123,12 @@ namespace Aerolite.Components
                     }
                     else
                     {
-                        //stay stuck on last frame
-                        CompleteAnimation = true;
-                        OnAnimationComplete?.Invoke(this);
+                        if (!CompleteAnimation)
+                        {
+                            //stay stuck on last frame
+                            CompleteAnimation = true;
+                            OnAnimationComplete?.Invoke(this);
+                        }
                     }
                 }
                 else
@@ -159,6 +188,18 @@ namespace Aerolite.Components
         {
             RenderColor = new AeColor();
             AddComponent(RenderColor);
+        }
+
+        public AeAnimation Get(string key)
+        {
+            if (_animations.ContainsKey(key))
+            {
+                return _animations[key];
+            }
+            else
+            {
+                throw new ArgumentException("Key does not exist in the animations dictionary.");
+            }
         }
 
         public void Add(string name, AeAnimation animation)

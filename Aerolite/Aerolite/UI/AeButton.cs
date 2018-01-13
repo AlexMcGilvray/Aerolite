@@ -99,6 +99,16 @@ namespace Aerolite.UI
                     IsMouseHovering = false;
                 }
             }
+
+            var touch = Engine.Input.Touch;
+
+            var bounds = new AeAABB();
+            bounds.SetPosition((int)Transform.X, (int)Transform.Y);
+            bounds.SetSize(BoundingBox.Width, BoundingBox.Height);
+            if (touch.IsTouched(bounds))
+            {
+                _onClick();
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)

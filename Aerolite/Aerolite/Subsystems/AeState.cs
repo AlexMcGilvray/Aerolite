@@ -33,7 +33,7 @@ namespace Aerolite.Subsystems
             CameraEnabled = true;
         }
 
-        protected void AddEntity(IAeEntity entity)
+        public void AddEntity(IAeEntity entity)
         {
             _entitiesToAdd.Add(entity);
         }
@@ -82,11 +82,23 @@ namespace Aerolite.Subsystems
         {
             if (CameraEnabled)
             {
-                batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone,null,Camera.GetTransform());
+                batch.Begin(
+                    SpriteSortMode.Deferred, 
+                    BlendState.AlphaBlend, 
+                    SamplerState.PointClamp, 
+                    DepthStencilState.Default, 
+                    RasterizerState.CullNone, 
+                    null, 
+                    Camera.GetTransform());
             }
             else
             {
-                batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                batch.Begin(
+                    SpriteSortMode.Deferred, 
+                    BlendState.AlphaBlend, 
+                    SamplerState.PointClamp, 
+                    DepthStencilState.Default, 
+                    RasterizerState.CullNone);
             }
             foreach (var ent in _entities.Entities)
             {

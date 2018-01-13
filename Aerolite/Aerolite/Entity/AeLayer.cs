@@ -38,7 +38,9 @@ namespace Aerolite.Entity
         {
             _entities.Remove(entity);
         }
-  
+
+        public virtual void Init() { }
+
         public virtual void Update(GameTime gameTime)
         {
             foreach (var ent in _entities)

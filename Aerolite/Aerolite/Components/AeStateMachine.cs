@@ -12,7 +12,7 @@ namespace Aerolite.Components
     public delegate void AeStateMachineOnExit();
 
     /// <summary>
-    /// Possible additions
+    /// Possible additions 
     ///  * Add transition rules so you can enforce what states can change to each other etc
     ///  * Stateful enter/exit functions (aka instead of oneshots they run each update until some condition is met)
     /// </summary>

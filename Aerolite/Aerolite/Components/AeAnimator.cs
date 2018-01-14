@@ -52,6 +52,8 @@ namespace Aerolite.Components
 
         public event AeEventOnAnimationComplete OnAnimationComplete;
 
+        public void ClearOnAnimationComplete() => OnAnimationComplete = null;
+
         public AeAnimation(Texture2D texture, AeAnimator parent, AeLinearAnimationGenerationParams linearAnimGenerationParams)
         {
             Texture = texture;

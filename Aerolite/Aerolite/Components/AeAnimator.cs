@@ -83,6 +83,11 @@ namespace Aerolite.Components
             : this(AeEngine.Singleton().TextureManager.LoadTexture(pathToTexture), parent, frames)
         { }
 
+        ~AeAnimation()
+        {
+            ClearOnAnimationComplete();
+        }
+
         public void AddFrame(AeAnimationFrame frame)
         {
             Frames.Add(frame);

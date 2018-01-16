@@ -74,7 +74,7 @@ namespace Aerolite.Entity
                 _isInitialized = true;
                 Init();
             }
-                if (Alive)
+            if (Alive)
             {
                 CollisionHull.SetPosition((int)Transform.X, (int)Transform.Y);
                 foreach(var cmp in _privateComponents)
@@ -111,7 +111,5 @@ namespace Aerolite.Entity
                 }
             }
         }
-
-
     }
 }

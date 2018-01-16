@@ -132,7 +132,7 @@ namespace Aerolite.Components
                     {
                         if (!CompleteAnimation)
                         {
-                            //stay stuck on last frame
+                            // stay stuck on last frame
                             CompleteAnimation = true;
                             OnAnimationComplete?.Invoke(this);
                         }

@@ -26,7 +26,10 @@ namespace Aerolite.UI
             {
                 if (value > 1.0f || value < 0.0f)
                 {
+#if DEBUG
                     throw new ArgumentOutOfRangeException("value not within 0-1 range");
+#endif
+                    // maybe clamp in release mode or something
                 }
                 _currentValue = value;
             }

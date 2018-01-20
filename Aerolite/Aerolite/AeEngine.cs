@@ -1,6 +1,7 @@
 ﻿using Aerolite.Subsystems;
 using Aerolite.Subsystems.Graphics;
 using Aerolite.Subsystems.Input;
+using Aerolite.UI;
 using Aerolite.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,6 +22,7 @@ namespace Aerolite
         public AeInput Input;
         public AeRandom Random;
         public AeIDebugResources DebugResources { get; set; }
+        public AeUISettings UISettings { get; private set; } = new AeUISettings();
 
         private void InitSubsystems()
         {

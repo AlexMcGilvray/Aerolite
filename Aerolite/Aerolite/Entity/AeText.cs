@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Aerolite
 {
+    /// <summary>
+    /// TODO this should be a string builder underneath if we're allowing the text to be mutable.
+    /// </summary>
     public class AeText : AeEntity
     {
         private string _text;

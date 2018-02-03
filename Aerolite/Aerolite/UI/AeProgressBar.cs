@@ -49,9 +49,11 @@ namespace Aerolite.UI
 
         private Texture2D _drawTexture;
 
-        public AeProgressBar(int width, int height, int borderWidth = 2, int borderHeight = 2)
+        public AeProgressBar(int x, int y, int width, int height, int borderWidth = 2, int borderHeight = 2)
         {
             _drawTexture = Engine.TextureManager.CreateFilledRectangle(1, 1, Color.White);
+            Transform.X = x;
+            Transform.Y = y;
             BoundingBox.Width = width;
             BoundingBox.Height = height;
         }

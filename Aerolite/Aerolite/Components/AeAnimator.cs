@@ -227,6 +227,9 @@ namespace Aerolite.Components
             }
         }
 
+        /// <summary>
+        /// Sets the animation to null which I guess makes the animator invisible? 
+        /// </summary>
         public void ClearCurrentAnimation()
         {
             CurrentAnimation = null;

@@ -1,10 +1,5 @@
 ﻿using Aerolite.Entity;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aerolite.Components
 {
@@ -57,7 +52,6 @@ namespace Aerolite.Components
             return Matrix.CreateScale(Transform.ScaleX,Transform.ScaleY,1.0f) * 
                 Matrix.CreateTranslation(Transform.X * Transform.ScaleX, -Transform.Y * Transform.ScaleY, 0.0f);
         }
-
 
         public override void Update(GameTime gameTime)
         {

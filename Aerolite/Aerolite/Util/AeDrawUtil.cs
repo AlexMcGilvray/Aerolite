@@ -10,6 +10,22 @@ namespace Aerolite.Util
 {
     public static class AeDrawUtil
     {
+        public static void DrawRectangle(SpriteBatch batch, int x, int y, int width, int height)
+        {
+            DrawRectangle(batch, x, y, width, height, Color.White);
+        }
+
+        public static void DrawRectangle(SpriteBatch batch,int x, int y, int width, int height, Color color)
+        {
+            Texture2D fill = AeEngine.Singleton().TextureManager.GetFillTexture();
+            Rectangle dest;
+            dest.X = x;
+            dest.Y = y;
+            dest.Width = width;
+            dest.Height = height;
+            batch.Draw(fill, dest, color);
+        }
+
         public static void DrawHollowRectangle(SpriteBatch batch, Rectangle sourceRect, int border = 1)
         {
             DrawHollowRectangle(batch, sourceRect, Color.White, border);

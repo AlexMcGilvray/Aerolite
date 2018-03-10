@@ -47,9 +47,9 @@ namespace Aerolite.Components
         public Vector2 ScreenToWorld(Vector2 screenCoordinate)
         {
             Vector2 convertedCoordinates;
-            convertedCoordinates.X = screenCoordinate.X - Transform.X;
-            convertedCoordinates.Y = screenCoordinate.Y + Transform.Y;
-            return convertedCoordinates;
+            convertedCoordinates.X = (screenCoordinate.X / Transform.ScaleX) - Transform.X;
+            convertedCoordinates.Y = (screenCoordinate.Y / Transform.ScaleY) + Transform.Y;
+            return convertedCoordinates; 
         }
 
         public Matrix GetTransform()

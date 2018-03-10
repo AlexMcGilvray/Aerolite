@@ -6,11 +6,9 @@ namespace Aerolite.Components
     public class AeCamera : AeComponent
     {
         public AeTransform Transform { get; private set; }
-
         public AeEntity ApproachTarget { get; private set; }
         public float ApproachSpeed { get; set; } = 15.0f;
         public float ApproachThreshold { get; set; } = 16.0f;
-        private bool _removeTargetOnArrival;
 
         public void SetApproachTarget(AeEntity target, bool removeTargetOnArrival = false)
         {
@@ -78,5 +76,7 @@ namespace Aerolite.Components
                 }
             }
         }
+
+        private bool _removeTargetOnArrival;
     }
 }

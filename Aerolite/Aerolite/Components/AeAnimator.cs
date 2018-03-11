@@ -111,6 +111,15 @@ namespace Aerolite.Components
             CompleteAnimation = false;
         }
 
+        /// <summary>
+        /// Use at own peril.
+        /// </summary>
+        /// <param name="texture"></param>
+        public void SetTexture(Texture2D texture)
+        {
+            Texture = texture;
+        }
+
         public void Update(GameTime gameTime)
         {
             if (Frames.Count == 0)

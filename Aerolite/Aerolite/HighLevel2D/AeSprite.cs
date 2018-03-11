@@ -83,22 +83,39 @@ namespace Aerolite.HighLevel2D
         public AeColor RenderColor { get; set; }
         public bool Visible { get; set; } = true;
         
-        public AeSprite(string texturePath = null) : base()
+        public AeSprite()
         {
             Animator = new AeAnimator();
             RenderColor = new AeColor();
-            if (!string.IsNullOrEmpty(texturePath))
-            {
-                AeAnimation animation = new AeAnimation(texturePath, Animator);
-                AeAnimationFrame frame1 = new AeAnimationFrame(0, 0, animation.Texture.Width, animation.Texture.Height, -1);
-                SizeX = animation.Texture.Width;
-                SizeY = animation.Texture.Height;
-                animation.AddFrame(frame1);
-                Animator.Add("default",animation);
-            }
+
             CollisionHull.SetSize((int)SizeX, (int)SizeY);
             AddComponent(Animator);
             AddComponent(RenderColor);
+        }
+
+        public AeSprite(string texturePath = null) : this()
+        {
+            if (!string.IsNullOrEmpty(texturePath))
+            {
+                var texture = Engine.TextureManager.LoadTexture(texturePath);
+                LoadAnimator(texture);
+            }
+        }
+
+        public AeSprite(Texture2D texture) : this()
+        {
+            LoadAnimator(texture);
+        }
+
+        private void LoadAnimator(Texture2D texture)
+        {
+            AeAnimation animation = new AeAnimation(texture, Animator);
+            AeAnimationFrame frame1 = new AeAnimationFrame(0, 0, animation.Texture.Width, animation.Texture.Height, -1);
+            SizeX = animation.Texture.Width;
+            SizeY = animation.Texture.Height;
+            animation.AddFrame(frame1);
+            Animator.Add("default", animation);
+            CollisionHull.SetSize((int)SizeX, (int)SizeY);
         }
 
         public void SetupDebugVizualization()

@@ -73,6 +73,7 @@ namespace Aerolite.Subsystems.Graphics
             ScalingMode = AeScalingMode.CLOSEST_MULTIPLE_OF_2;
             SetGameResolution(1280, 720);
             SetScreenResolution(1280, 720);
+    
         }
 
         public void AddScreenResolutionChangeCallback(OnScreenResolutionChange callback)

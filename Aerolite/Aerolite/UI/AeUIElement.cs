@@ -4,7 +4,10 @@ using Microsoft.Xna.Framework;
 
 namespace Aerolite.UI
 {
-   
+    public delegate void OnMouseHoverCB(AeMouseData mousePosition);
+    public delegate void OnMouseClickCB(AeMouseData mousePosition);
+    public delegate void OnMouseExitCB(AeMouseData mousePosition);
+
     /// <summary>
     /// TODO implement some kind of event system and have virtuals or callbacks for OnMouseHover etc etc
     /// </summary>
@@ -25,22 +28,29 @@ namespace Aerolite.UI
                 if (mouse.LeftClick)
                 {
                     OnMouseClick(mouse.MouseData);
+                    OnMouseClickEvent?.Invoke(mouse.MouseData);
                 }
                 else
                 {
-                    OnMouseHover(mouse.MouseData);
                     _mouseHovering = true;
+                    OnMouseHover(mouse.MouseData);
+                    OnMouseHoverEvent?.Invoke(mouse.MouseData);
                 }
             }
             else
             {
                 if (_mouseHovering)
                 {
+                    _mouseHovering = false;
                     OnMouseExit(mouse.MouseData);
+                    OnMouseExitEvent?.Invoke(mouse.MouseData);
                 }
-                _mouseHovering = false;
             }
         }
+
+        public event OnMouseHoverCB OnMouseHoverEvent;
+        public event OnMouseHoverCB OnMouseExitEvent;
+        public event OnMouseHoverCB OnMouseClickEvent;
 
         protected virtual void OnMouseHover(AeMouseData mousePosition)  { }
         protected virtual void OnMouseExit(AeMouseData mousePosition) { }

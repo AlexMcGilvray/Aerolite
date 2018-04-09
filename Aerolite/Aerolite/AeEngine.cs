@@ -42,17 +42,13 @@ namespace Aerolite
             Graphics.Load();
 
             Random = new AeRandom();
-
             Input = new AeInput(Graphics);
 
             AeGraphicsSettings settings = new AeGraphicsSettings(Graphics);
             AeRenderer renderer = new AeRenderer(Graphics);
 
             TextureManager = new AeTextureManager(GameReference);
-
             StateManager = new AeStateManager();
-
-
         }
 
         #region Singleton 

@@ -19,7 +19,7 @@ namespace Aerolite.Subsystems.Graphics
         public AeGraphics(GraphicsDeviceManager graphicsDeviceManager)
         {
             GraphicsDeviceManager = graphicsDeviceManager;
-
+            GraphicsDeviceManager.GraphicsProfile = GraphicsProfile.HiDef;
         }
 
         public void Load()

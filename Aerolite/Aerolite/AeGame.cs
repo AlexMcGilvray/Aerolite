@@ -17,6 +17,7 @@ namespace Aerolite
             Content.RootDirectory = "Content";
             AeEngine.Initalize(this);
             Engine = AeEngine.Singleton();
+ 
         }
         protected override sealed void Initialize()
         {

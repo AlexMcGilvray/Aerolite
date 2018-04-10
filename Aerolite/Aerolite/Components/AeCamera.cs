@@ -3,16 +3,37 @@ using Microsoft.Xna.Framework;
 
 namespace Aerolite.Components
 {
+    public enum AeCameraApproachTargetMode
+    {
+        Normal,
+        ApproachYOnly,
+        ApproachXOnly
+    }
+
+    public class AeCameraApproachTarget
+    {
+        public AeCameraApproachTarget(AeEntity target, AeCameraApproachTargetMode mode = AeCameraApproachTargetMode.Normal)
+        {
+            Target = target;
+            ApproachMode = mode;
+        }
+        public AeEntity Target { get; private set; }
+        public AeCameraApproachTargetMode ApproachMode { get; private set; }
+    }
+
     public class AeCamera : AeComponent
     {
         public AeTransform Transform { get; private set; }
-        public AeEntity ApproachTarget { get; private set; }
+        public AeEntity ApproachTarget => _cameraApproachTarget?.Target;
+        
         public float ApproachSpeed { get; set; } = 15.0f;
         public float ApproachThreshold { get; set; } = 16.0f;
 
-        public void SetApproachTarget(AeEntity target, bool removeTargetOnArrival = false)
+        public void SetApproachTarget(AeEntity target, bool removeTargetOnArrival = false) => SetApproachTarget(target, AeCameraApproachTargetMode.Normal, removeTargetOnArrival);
+
+        public void SetApproachTarget(AeEntity target, AeCameraApproachTargetMode mode, bool removeTargetOnArrival = false)
         {
-            ApproachTarget = target;
+            _cameraApproachTarget = new AeCameraApproachTarget(target, mode);
             _removeTargetOnArrival = removeTargetOnArrival;
         }
 
@@ -54,12 +75,25 @@ namespace Aerolite.Components
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (ApproachTarget != null)
+            if (_cameraApproachTarget != null)
             {
-                Vector2 vectorToTarget;
+                Vector2 vectorToTarget = Vector2.Zero;
                 Vector2 directionToTarget;
-                vectorToTarget.X = ApproachTarget.Transform.X - Transform.X;
-                vectorToTarget.Y = ApproachTarget.Transform.Y - Transform.Y;
+                switch (_cameraApproachTarget.ApproachMode)
+                {
+                    case AeCameraApproachTargetMode.Normal:
+                        vectorToTarget.X = _cameraApproachTarget.Target.Transform.X - Transform.X;
+                        vectorToTarget.Y = _cameraApproachTarget.Target.Transform.Y - Transform.Y;
+                        break;
+                    case AeCameraApproachTargetMode.ApproachYOnly:
+                        vectorToTarget.Y = _cameraApproachTarget.Target.Transform.Y - Transform.Y;
+                        break;
+                    case AeCameraApproachTargetMode.ApproachXOnly:
+                        vectorToTarget.X = _cameraApproachTarget.Target.Transform.X - Transform.X;
+                        break;
+                    default:
+                        break;
+                }
                 directionToTarget = vectorToTarget;
                 if (directionToTarget.LengthSquared() != 0)
                 {
@@ -71,12 +105,13 @@ namespace Aerolite.Components
                 {
                     if (_removeTargetOnArrival)
                     {
-                        ApproachTarget = null;
+                        _cameraApproachTarget = null;
                     }
                 }
             }
         }
 
         private bool _removeTargetOnArrival;
+        private AeCameraApproachTarget _cameraApproachTarget;
     }
 }

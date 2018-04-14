@@ -19,6 +19,8 @@ namespace Aerolite.Components
         public Color BaseColor => _baseColor;
         public bool IsInterpolating => _colorInterpolator.IsRunning;
 
+        public void SetInterpolationType(AeInterpolationDefaultValueType type) => _colorInterpolator.DefaultInterpolationValueType = type;
+
         private AeInterpolator _colorInterpolator = new AeInterpolator();
 
         public AeColor()
@@ -38,7 +40,7 @@ namespace Aerolite.Components
             _currentColor = color;
         }
 
-        public void InterpololateTo(Color targetColor,int milliseconds,bool switchBackOnComplete)
+        public void InterpololateTo(Color targetColor, int milliseconds, bool switchBackOnComplete)
         {
             _targetColor = targetColor;
             _colorInterpolator.Start(milliseconds);
@@ -49,12 +51,31 @@ namespace Aerolite.Components
             }
         }
 
+        public void Pulsate(Color targetColor, int milliseconds, bool switchBackOnComplete = true)
+        {
+            _targetColor = targetColor;
+            _colorInterpolator.Start(milliseconds,AeInterpolationType.ContinuousSinWave);
+            _colorInterpolator.ClearEvents();
+            if (switchBackOnComplete)
+            {
+                _colorInterpolator.OnInterpolationComplete += interpoloator => _currentColor = _baseColor;
+            }
+        }
+
+        public void StopPulsate()
+        {
+            if (_colorInterpolator.IsRunning)
+            {
+                _colorInterpolator.Kill();
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             if (_colorInterpolator.IsRunning)
             {
-                float currentInterpolatorValue = _colorInterpolator.CurrentLinearValue;
+                float currentInterpolatorValue = _colorInterpolator.CurrentValue;
                 _currentColor.R = AeMath.GetTweenValue(_baseColor.R, _targetColor.R, currentInterpolatorValue);
                 _currentColor.G = AeMath.GetTweenValue(_baseColor.G, _targetColor.G, currentInterpolatorValue);
                 _currentColor.B = AeMath.GetTweenValue(_baseColor.B, _targetColor.B, currentInterpolatorValue);

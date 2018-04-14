@@ -25,9 +25,9 @@ namespace Aerolite.Components
     {
         public AeTransform Transform { get; private set; }
         public AeEntity ApproachTarget => _cameraApproachTarget?.Target;
-        
         public float ApproachSpeed { get; set; } = 15.0f;
         public float ApproachThreshold { get; set; } = 16.0f;
+        public bool IsApproachingTarget => _cameraApproachTarget != null;
 
         public void SetApproachTarget(AeEntity target, bool removeTargetOnArrival = false) => SetApproachTarget(target, AeCameraApproachTargetMode.Normal, removeTargetOnArrival);
 
@@ -99,8 +99,20 @@ namespace Aerolite.Components
                 {
                     directionToTarget.Normalize();
                 }
-                Transform.X += directionToTarget.X * ApproachSpeed;
-                Transform.Y += directionToTarget.Y * ApproachSpeed;
+
+                Vector2 displacement;
+                displacement.X = directionToTarget.X * ApproachSpeed;
+                displacement.Y = directionToTarget.Y * ApproachSpeed;
+
+                // Do this so we don't keep overshooting our target and cause the camera to jitter forever
+                while (displacement.LengthSquared() > vectorToTarget.LengthSquared())
+                {
+                    displacement.X /= 2.0f;
+                    displacement.Y /= 2.0f;
+                }
+
+                Transform.X += displacement.X;
+                Transform.Y += displacement.Y;
                 if (vectorToTarget.LengthSquared() <= ApproachThreshold * ApproachThreshold)
                 {
                     if (_removeTargetOnArrival)

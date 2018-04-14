@@ -1,30 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aerolite.Components;
 using Aerolite.Entity;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Aerolite.Components;
 using Aerolite.Interfaces;
 using Aerolite.Subsystems.Input;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Aerolite.Subsystems
 {
     public class AeState : IAeEntity
     {
-        private AeEntityLayer _entities = new AeEntityLayer();
         public AeCamera Camera { get; private set; }
         public bool CameraEnabled { get; set; }
         public AeEngine Engine { get; private set; }
         public AeInput Input { get { return Engine.Input; } }
-
-        private bool _hasInited = false;
-
-        private List<IAeEntity> _entitiesToAdd = new List<IAeEntity>();
-        private List<IAeEntity> _entitiesToRemove = new List<IAeEntity>();
-
 
         public AeState() : base()
         {
@@ -42,6 +31,8 @@ namespace Aerolite.Subsystems
         {
             _entitiesToRemove.Add(entity);
         }
+
+        public bool ContainsEntity(IAeEntity entity) => _entities.Entities.Contains(entity);
 
         public virtual void Update(GameTime gameTime)
         {
@@ -106,5 +97,10 @@ namespace Aerolite.Subsystems
             }
             batch.End();
         }
+
+        private AeEntityLayer _entities = new AeEntityLayer();
+        private bool _hasInited = false;
+        private List<IAeEntity> _entitiesToAdd = new List<IAeEntity>();
+        private List<IAeEntity> _entitiesToRemove = new List<IAeEntity>();
     }
 }

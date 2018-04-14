@@ -101,6 +101,7 @@
     <Compile Include="UI\AeGroupPanel.cs" />
     <Compile Include="UI\AePanel.cs" />
     <Compile Include="UI\AeProgressBar.cs" />
+    <Compile Include="UI\AeThumbnailSelector.cs" />
     <Compile Include="UI\AeUIElement.cs" />
     <Compile Include="UI\AeUISettings.cs" />
     <Compile Include="Util\AeDrawUtil.cs" />

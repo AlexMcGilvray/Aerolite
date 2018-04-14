@@ -44,6 +44,16 @@ namespace Aerolite.Components
             _rect.Y = y;
         }
 
+        public void SetHull(Rectangle rect)
+        {
+            _rect = rect;
+        }
+
+        public void SetHull(AeAABB hull)
+        {
+            _rect = hull._rect;
+        }
+
         public bool Overlaps(AeAABB otherHull)
         {
             if (!Collidable || !otherHull.Collidable)

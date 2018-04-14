@@ -29,6 +29,10 @@ namespace Aerolite.Entity
             _entities.Reverse();
         }
 
+        /// <summary>
+        /// What this should really do is put this in a defferred buffer so the entities can be added at a safe time.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Add(T entity)
         {
             _entities.Add(entity);

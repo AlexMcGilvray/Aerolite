@@ -37,6 +37,12 @@ namespace Aerolite.UI
             AddChild(_elements);
         }
 
+        public void Clear()
+        {
+            Elements.Clear();
+            _elements.Clear();
+        }
+
         public void Add(AeUIElement element)
         {
             Elements.Add(element);

@@ -21,6 +21,38 @@ namespace Aerolite.UI
             BoundingBox = boundingBox;
             Transform.X = boundingBox.X;
             Transform.Y = boundingBox.Y;
+            BackgroundPanelColor = Color.Gray;
+            _backgroundPanel.Transform.X = boundingBox.X;
+            _backgroundPanel.Transform.Y = boundingBox.Y;
+            _backgroundPanel.Width = boundingBox.Width;
+            _backgroundPanel.Height = boundingBox.Height;
+            AddChild(_backgroundPanel);
+        }
+
+
+        public Color BackgroundPanelColor
+        {
+            get
+            {
+                return _backgroundPanel.PanelColor;
+            }
+            set
+            {
+                _backgroundPanel.PanelColor = value;
+            }
+
+        }
+        public bool BackgroundPanelVisible
+        {
+            get
+            {
+                return _backgroundPanel.Alive;
+            }
+            set
+            {
+                _backgroundPanel.Alive = value;
+            }
+
         }
 
         public int Padding { get; set; } = 4;
@@ -64,5 +96,7 @@ namespace Aerolite.UI
 
         private int _page = 0;
         List<AeUIElement> _thumbnails = new List<AeUIElement>();
+        private AePanel _backgroundPanel = new AePanel();
+
     }
 }

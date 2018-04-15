@@ -29,12 +29,42 @@ namespace Aerolite.UI
         public AeGroupPanelLayoutSizing LayoutSizing { get; set; }
         public int Padding { get; set; } = 2;
 
+        public Color BackgroundPanelColor
+        {
+            get
+            {
+                return _backgroundPanel.PanelColor;
+            }
+            set
+            {
+                _backgroundPanel.PanelColor = value;
+            }
+
+        }
+        public bool BackgroundPanelVisible
+        {
+            get
+            {
+                return _backgroundPanel.Alive;
+            }
+            set
+            {
+                _backgroundPanel.Alive = value;
+            }
+
+        }
+        
         public AeGroupPanel()
         {
             Elements = new List<AeUIElement>();
             LayoutOrder = AeGroupPanelLayoutOrder.Horizontal;
             LayoutSizing = AeGroupPanelLayoutSizing.None;
+
+            BackgroundPanelColor = Color.Gray;
+
+            AddChild(_backgroundPanel);
             AddChild(_elements);
+
         }
 
         public void Clear()
@@ -95,6 +125,30 @@ namespace Aerolite.UI
 
             BoundingBox.Width = largestWidth;
             BoundingBox.Height = largestHeight;
+
+            {
+                int totalWidth = 0;
+                int totalHeight = 0;
+
+                switch (LayoutOrder)
+                {
+                    case AeGroupPanelLayoutOrder.Horizontal:
+                        totalWidth = (largestWidth * Elements.Count) + (Padding * Elements.Count) + Padding;
+                        totalHeight = largestHeight;
+                        break;
+                    case AeGroupPanelLayoutOrder.Vertical:
+                        totalWidth = largestWidth;
+                        totalHeight = (largestHeight * Elements.Count) + (Padding * Elements.Count) + Padding;
+                        break;
+                    default:
+                        break;
+                }
+
+                _backgroundPanel.Transform.X = Transform.X;
+                _backgroundPanel.Transform.Y = Transform.Y;
+                _backgroundPanel.Width = totalWidth;
+                _backgroundPanel.Height = totalHeight;
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -102,5 +156,7 @@ namespace Aerolite.UI
             base.Update(gameTime);
             Layout();
         }
+
+        private AePanel _backgroundPanel = new AePanel();
     }
 }

@@ -13,6 +13,7 @@ namespace Aerolite.Entity
     public class AeEntity : IAeEntity
     {
         public bool Alive { get; set; } = true;
+        
         public bool IsInitialized { get; private set; }
 
         public AeTransform Transform { get; private set; }

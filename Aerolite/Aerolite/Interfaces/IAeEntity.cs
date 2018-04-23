@@ -10,6 +10,7 @@ namespace Aerolite.Interfaces
 {
     public interface IAeEntity
     {
+        bool Alive { get; set; }
         void Update(GameTime gameTime);
         void Draw(GameTime gameTime, SpriteBatch batch);
         void Init();

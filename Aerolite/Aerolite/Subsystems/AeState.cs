@@ -14,6 +14,7 @@ namespace Aerolite.Subsystems
         public bool CameraEnabled { get; set; }
         public AeEngine Engine { get; private set; }
         public AeInput Input { get { return Engine.Input; } }
+        public bool Alive { get; set; } = true;
 
         public AeState() : base()
         {
@@ -36,6 +37,10 @@ namespace Aerolite.Subsystems
 
         public virtual void Update(GameTime gameTime)
         {
+            if (!Alive)
+            {
+                return;
+            }
             if (!_hasInited)
             {
                 Init();
@@ -71,6 +76,10 @@ namespace Aerolite.Subsystems
 
         public virtual void Draw(GameTime gameTime, SpriteBatch batch)
         {
+            if (!Alive)
+            {
+                return;
+            }
             if (CameraEnabled)
             {
                 batch.Begin(

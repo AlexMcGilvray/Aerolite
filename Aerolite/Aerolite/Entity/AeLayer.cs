@@ -18,6 +18,7 @@ namespace Aerolite.Entity
         public List<T> Entities { get { return _entities; } }
 
         public AeLayer() : this(InitialLayerSize) { }
+        public bool Alive { get; set; } = true;
         
         public AeLayer(int initialCollectionSize)
         {
@@ -52,6 +53,10 @@ namespace Aerolite.Entity
 
         public virtual void Update(GameTime gameTime)
         {
+            if (!Alive)
+            {
+                return;
+            }
             foreach (var ent in _entities)
             {
                 ent.Update(gameTime);
@@ -60,6 +65,10 @@ namespace Aerolite.Entity
 
         public virtual void Draw(GameTime gameTime, SpriteBatch batch)
         {
+            if (!Alive)
+            {
+                return;
+            }
             foreach (var ent in _entities)
             {
                 ent.Draw(gameTime, batch);

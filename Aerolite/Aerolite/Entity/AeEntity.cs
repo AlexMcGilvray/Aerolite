@@ -108,7 +108,10 @@ namespace Aerolite.Entity
                 }
                 foreach (var child in Entities)
                 {
-                    child.Draw(gameTime, batch);
+                    if (child.Alive)
+                    {
+                        child.Draw(gameTime, batch);
+                    }
                 }
             }
         }

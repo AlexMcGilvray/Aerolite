@@ -12,7 +12,8 @@ namespace Aerolite.UI
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
-            AeDrawUtil.DrawRectangle(batch, (int)Transform.X, (int)Transform.Y, Width, Height, PanelColor);
+       
+                AeDrawUtil.DrawRectangle(batch, (int)Transform.X, (int)Transform.Y, Width, Height, PanelColor);
         }
     }
 }

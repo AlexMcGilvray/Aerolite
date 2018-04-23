@@ -24,10 +24,11 @@ namespace Aerolite.UI
     {
         //TODO make the layer enumerable ASAP because this 2 list stuff is getting tiresome
         public List<AeUIElement> Elements { get; private set; }
-        AeLayer<AeUIElement> _elements = new AeLayer<AeUIElement>();
         public AeGroupPanelLayoutOrder LayoutOrder { get; set; }
         public AeGroupPanelLayoutSizing LayoutSizing { get; set; }
         public int Padding { get; set; } = 2;
+
+        public int BorderSize { get; set; } = 2;
 
         public Color BackgroundPanelColor
         {
@@ -51,20 +52,44 @@ namespace Aerolite.UI
             {
                 _backgroundPanel.Alive = value;
             }
+        }
+
+        public Color BorderPanelColor
+        {
+            get
+            {
+                return _borderPanel.PanelColor;
+            }
+            set
+            {
+                _borderPanel.PanelColor = value;
+            }
 
         }
-        
+        public bool BorderPanelVisible
+        {
+            get
+            {
+                return _borderPanel.Alive;
+            }
+            set
+            {
+                _borderPanel.Alive = value;
+            }
+        }
+
         public AeGroupPanel()
         {
             Elements = new List<AeUIElement>();
             LayoutOrder = AeGroupPanelLayoutOrder.Horizontal;
             LayoutSizing = AeGroupPanelLayoutSizing.None;
 
-            BackgroundPanelColor = Color.Gray;
+            BackgroundPanelColor = Color.DarkGray;
+            BorderPanelColor = Color.Gray;
 
+            AddChild(_borderPanel);
             AddChild(_backgroundPanel);
             AddChild(_elements);
-
         }
 
         public void Clear()
@@ -87,6 +112,18 @@ namespace Aerolite.UI
             currentPosition.Y = Transform.Y;
             int largestWidth = 0;
             int largestHeight = 0;
+
+            switch (LayoutOrder)
+            {
+                case AeGroupPanelLayoutOrder.Horizontal:
+                    currentPosition.X += Padding;
+                    break;
+                case AeGroupPanelLayoutOrder.Vertical:
+                    currentPosition.Y += Padding;
+                    break;
+                default:
+                    break;
+            }
 
             foreach (var element in Elements)
             {
@@ -148,6 +185,11 @@ namespace Aerolite.UI
                 _backgroundPanel.Transform.Y = Transform.Y;
                 _backgroundPanel.Width = totalWidth;
                 _backgroundPanel.Height = totalHeight;
+
+                _borderPanel.Transform.X = _backgroundPanel.Transform.X - BorderSize;
+                _borderPanel.Transform.Y = _backgroundPanel.Transform.Y - BorderSize;
+                _borderPanel.Width = totalWidth + BorderSize * 2;
+                _borderPanel.Height = totalHeight + BorderSize * 2;
             }
         }
 
@@ -157,6 +199,8 @@ namespace Aerolite.UI
             Layout();
         }
 
-        private AePanel _backgroundPanel = new AePanel();
+        private readonly AePanel _backgroundPanel = new AePanel();
+        private readonly AePanel _borderPanel = new AePanel();
+        AeLayer<AeUIElement> _elements = new AeLayer<AeUIElement>();
     }
 }

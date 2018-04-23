@@ -19,13 +19,9 @@ namespace Aerolite.UI
         public AeThumbnailSelector(Rectangle boundingBox)
         {
             BoundingBox = boundingBox;
-            Transform.X = boundingBox.X;
-            Transform.Y = boundingBox.Y;
+            Transform.X = BoundingBox.X;
+            Transform.Y = BoundingBox.Y;
             BackgroundPanelColor = Color.Gray;
-            _backgroundPanel.Transform.X = boundingBox.X;
-            _backgroundPanel.Transform.Y = boundingBox.Y;
-            _backgroundPanel.Width = boundingBox.Width;
-            _backgroundPanel.Height = boundingBox.Height;
             AddChild(_backgroundPanel);
         }
 
@@ -76,6 +72,12 @@ namespace Aerolite.UI
         public override void Draw(GameTime gameTime, SpriteBatch batch)
         {
             base.Draw(gameTime, batch);
+
+            _backgroundPanel.Transform.X = BoundingBox.X;
+            _backgroundPanel.Transform.Y = BoundingBox.Y;
+            _backgroundPanel.Width = BoundingBox.Width;
+            _backgroundPanel.Height = BoundingBox.Height;
+
             if (_thumbnails.Count > 0)
             {
                 int numColumns = BoundingBox.Width / (_thumbnails[0].BoundingBox.Width + Padding * 2);

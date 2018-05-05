@@ -16,6 +16,9 @@ namespace Aerolite.UI
     /// </summary>
     public class AeThumbnailSelector : AeUIElement
     {
+        public AeThumbnailSelector()
+            :this(new Rectangle()) { }
+
         public AeThumbnailSelector(Rectangle boundingBox)
         {
             BoundingBox = boundingBox;
@@ -24,7 +27,6 @@ namespace Aerolite.UI
             BackgroundPanelColor = Color.Gray;
             AddChild(_backgroundPanel);
         }
-
 
         public Color BackgroundPanelColor
         {
@@ -80,17 +82,16 @@ namespace Aerolite.UI
 
             if (_thumbnails.Count > 0)
             {
-                int numColumns = BoundingBox.Width / (_thumbnails[0].BoundingBox.Width + Padding * 2);
-                int numRows = BoundingBox.Height / (_thumbnails[0].BoundingBox.Height + Padding * 2);
-
+                int numColumns = BoundingBox.Width / (_thumbnails[0].BoundingBox.Width + Padding * 2) + Padding;
+                int numRows = BoundingBox.Height / (_thumbnails[0].BoundingBox.Height + Padding * 2) + Padding;
                 int thumbnailCount = Math.Min((numColumns * numRows), _thumbnails.Count);
 
                 for (int i = 0; i < thumbnailCount; ++i)
                 {
                     var pageOffset = (numRows * numColumns) * _page;
                     var thumb = _thumbnails[pageOffset + i];
-                    thumb.Transform.X = BoundingBox.X + ((Padding + thumb.BoundingBox.Width + Padding) * (i % numColumns));
-                    thumb.Transform.Y = BoundingBox.Y + ((Padding + thumb.BoundingBox.Height + Padding) * (i / numColumns));
+                    thumb.Transform.X = Padding + BoundingBox.X + ((Padding + thumb.BoundingBox.Width + Padding) * (i % numColumns));
+                    thumb.Transform.Y = Padding + BoundingBox.Y + ((Padding + thumb.BoundingBox.Height + Padding) * (i / numColumns));
                     thumb.Draw(gameTime, batch);
                 }
             }

@@ -8,6 +8,19 @@
 * Add touch support to AeButton
 * When zooming out the camera, the translation should also be scaled so you zoom on the point your mouse is over rather than the worldspace origin
 
+## Thoughts on the architecture
+
+*2018 May 05* Bounding box, width, height and transform ambiguity
+
+AePanel does not draw according to its bounding box but from its position and width and height. I guess the question is should width and height be properties that 
+change the bounding box (and same for transform?).
+
+Either way I confuse the hell out of myself with this and it could only further confound someone else who didn't make this codebase. Definitely a high priority item 
+to address in version 3 of the engine.
+
+Without putting a lot of thought into it I'm thinking I need to keep the values internal and make position, width, height, boudning box etc all point to the same set 
+of private data.
+
 ## Done
 
 *2017 April 18*

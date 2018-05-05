@@ -69,7 +69,6 @@ namespace Aerolite.HighLevel2D
 
     }
 
-
     public class AeSprite : AeEntity
     {
         public Texture2D Texture { get; private set; }

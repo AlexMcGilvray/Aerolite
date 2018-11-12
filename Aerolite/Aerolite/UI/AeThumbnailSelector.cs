@@ -8,13 +8,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Aerolite.UI
 {
+    public class AeThumbnailSelector : AeThumbnailSelector<AeUIElement>
+    {
+        public AeThumbnailSelector() : base(new Rectangle()) { }
+        public AeThumbnailSelector(Rectangle boundingBox) :base(boundingBox) { }
+    }
     /// <summary>
     /// TODO
     ///  - add pagination logic
     ///  - add pagination controls
     ///  - debug bouinding box draw outline
     /// </summary>
-    public class AeThumbnailSelector : AeUIElement
+    public class AeThumbnailSelector<T> : AeUIElement where T : AeUIElement
     {
         public AeThumbnailSelector()
             :this(new Rectangle()) { }
@@ -30,41 +35,28 @@ namespace Aerolite.UI
 
         public Color BackgroundPanelColor
         {
-            get
-            {
-                return _backgroundPanel.PanelColor;
-            }
-            set
-            {
-                _backgroundPanel.PanelColor = value;
-            }
-
+            get => _backgroundPanel.PanelColor;
+            set => _backgroundPanel.PanelColor = value;
         }
+
         public bool BackgroundPanelVisible
         {
-            get
-            {
-                return _backgroundPanel.Alive;
-            }
-            set
-            {
-                _backgroundPanel.Alive = value;
-            }
-
+            get => _backgroundPanel.Alive;
+            set => _backgroundPanel.Alive = value;
         }
 
         public int Padding { get; set; } = 4;
 
-        public void AddThumbnail(AeUIElement thumb)
+        public void AddThumbnail(T thumb)
         {
             _thumbnails.Add(thumb);
         }
 
+        public List<T> ThumbnailCollection => _thumbnails;
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-
             foreach (var thumb in _thumbnails)
             {
                 thumb.Update(gameTime);
@@ -98,8 +90,7 @@ namespace Aerolite.UI
         }
 
         private int _page = 0;
-        List<AeUIElement> _thumbnails = new List<AeUIElement>();
+        private List<T> _thumbnails = new List<T>();
         private AePanel _backgroundPanel = new AePanel();
-
     }
 }

@@ -39,6 +39,7 @@ namespace Aerolite.Subsystems
         {
             string uniqueName = "ProceduralObject" + "00" + proceduralObjectCounter++;
             Color[] myColor = new Color[width * height];
+            // TODO thjis caused a memory leak and crashed in a soak test of about 30 mins. Fix this shit.
             Texture2D tex = new Texture2D(AeEngine.Singleton().GameReference.GraphicsDevice, width, height, false, SurfaceFormat.Color);
 
             for (int i = 0; i < myColor.Length; i++)

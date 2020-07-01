@@ -8,7 +8,7 @@ namespace Aerolite.Components
     public enum AeInterpolationType
     {
         OneShot,
-        ContinuousSinWave
+        TriangleWave
     }
 
     public enum AeInterpolationDefaultValueType
@@ -90,7 +90,7 @@ namespace Aerolite.Components
                             OnInterpolationComplete?.Invoke(this);
                         }
                         break;
-                    case AeInterpolationType.ContinuousSinWave:
+                    case AeInterpolationType.TriangleWave:
                         if (_isTimerIncreasing)
                         {
                             _currentTime += gameTime.ElapsedGameTime.Milliseconds;

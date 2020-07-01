@@ -54,7 +54,7 @@ namespace Aerolite.Components
         public void Pulsate(Color targetColor, int milliseconds, bool switchBackOnComplete = true)
         {
             _targetColor = targetColor;
-            _colorInterpolator.Start(milliseconds,AeInterpolationType.ContinuousSinWave);
+            _colorInterpolator.Start(milliseconds,AeInterpolationType.TriangleWave);
             _colorInterpolator.ClearEvents();
             if (switchBackOnComplete)
             {

@@ -1,12 +1,7 @@
-﻿using Aerolite.Entity;
-using Aerolite.HighLevel2D;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aerolite.Components
 {
@@ -32,6 +27,14 @@ namespace Aerolite.Components
 
     public class AeLinearAnimationGenerationParams
     {
+        public AeLinearAnimationGenerationParams(int width, int height, int frameCount, int frameTime)
+        {
+            Width = width;
+            Height = height;
+            FrameCount = frameCount;
+            FrameTime = frameTime;
+        }
+
         public int Width { get;  set; }
         public int Height { get;  set; }
         public int FrameCount { get;  set; }
@@ -78,6 +81,8 @@ namespace Aerolite.Components
             Parent = parent;
             AddFrames(frames);
         }
+
+
 
         public AeAnimation(string pathToTexture, AeAnimator parent, AeAnimationFrame[] frames = null)
             : this(AeEngine.Singleton().TextureManager.LoadTexture(pathToTexture), parent, frames)
